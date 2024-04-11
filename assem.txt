@@ -1,0 +1,2001 @@
+
+0000000000801c00 <get_common_indices.constprop.0>:
+  801c00:	53                   	push   %rbx
+  801c01:	48 85 ff             	test   %rdi,%rdi
+  801c04:	74 58                	je     801c5e <get_common_indices.constprop.0+0x5e>
+  801c06:	49 89 d0             	mov    %rdx,%r8
+  801c09:	49 89 c9             	mov    %rcx,%r9
+  801c0c:	b8 01 00 00 00       	mov    $0x1,%eax
+  801c11:	0f a2                	cpuid  
+  801c13:	89 15 67 a7 0c 00    	mov    %edx,0xca767(%rip)        # 8cc380 <_dl_x86_cpu_features+0x20>
+  801c19:	89 c2                	mov    %eax,%edx
+  801c1b:	c1 ea 08             	shr    $0x8,%edx
+  801c1e:	89 1d 54 a7 0c 00    	mov    %ebx,0xca754(%rip)        # 8cc378 <_dl_x86_cpu_features+0x18>
+  801c24:	83 e2 0f             	and    $0xf,%edx
+  801c27:	89 0d 4f a7 0c 00    	mov    %ecx,0xca74f(%rip)        # 8cc37c <_dl_x86_cpu_features+0x1c>
+  801c2d:	89 05 41 a7 0c 00    	mov    %eax,0xca741(%rip)        # 8cc374 <_dl_x86_cpu_features+0x14>
+  801c33:	89 17                	mov    %edx,(%rdi)
+  801c35:	89 c2                	mov    %eax,%edx
+  801c37:	c1 ea 04             	shr    $0x4,%edx
+  801c3a:	83 e2 0f             	and    $0xf,%edx
+  801c3d:	89 16                	mov    %edx,(%rsi)
+  801c3f:	89 c2                	mov    %eax,%edx
+  801c41:	c1 ea 0c             	shr    $0xc,%edx
+  801c44:	81 e2 f0 00 00 00    	and    $0xf0,%edx
+  801c4a:	41 89 10             	mov    %edx,(%r8)
+  801c4d:	89 c2                	mov    %eax,%edx
+  801c4f:	83 e2 0f             	and    $0xf,%edx
+  801c52:	41 89 11             	mov    %edx,(%r9)
+  801c55:	83 3f 0f             	cmpl   $0xf,(%rdi)
+  801c58:	0f 84 0f 01 00 00    	je     801d6d <get_common_indices.constprop.0+0x16d>
+  801c5e:	83 3d ff a6 0c 00 06 	cmpl   $0x6,0xca6ff(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801c65:	7e 44                	jle    801cab <get_common_indices.constprop.0+0xab>
+  801c67:	be 07 00 00 00       	mov    $0x7,%esi
+  801c6c:	31 c9                	xor    %ecx,%ecx
+  801c6e:	89 f0                	mov    %esi,%eax
+  801c70:	0f a2                	cpuid  
+  801c72:	89 05 1c a7 0c 00    	mov    %eax,0xca71c(%rip)        # 8cc394 <_dl_x86_cpu_features+0x34>
+  801c78:	89 f0                	mov    %esi,%eax
+  801c7a:	89 0d 1c a7 0c 00    	mov    %ecx,0xca71c(%rip)        # 8cc39c <_dl_x86_cpu_features+0x3c>
+  801c80:	b9 01 00 00 00       	mov    $0x1,%ecx
+  801c85:	89 1d 0d a7 0c 00    	mov    %ebx,0xca70d(%rip)        # 8cc398 <_dl_x86_cpu_features+0x38>
+  801c8b:	89 15 0f a7 0c 00    	mov    %edx,0xca70f(%rip)        # 8cc3a0 <_dl_x86_cpu_features+0x40>
+  801c91:	0f a2                	cpuid  
+  801c93:	89 05 9b a7 0c 00    	mov    %eax,0xca79b(%rip)        # 8cc434 <_dl_x86_cpu_features+0xd4>
+  801c99:	89 1d 99 a7 0c 00    	mov    %ebx,0xca799(%rip)        # 8cc438 <_dl_x86_cpu_features+0xd8>
+  801c9f:	89 0d 97 a7 0c 00    	mov    %ecx,0xca797(%rip)        # 8cc43c <_dl_x86_cpu_features+0xdc>
+  801ca5:	89 15 95 a7 0c 00    	mov    %edx,0xca795(%rip)        # 8cc440 <_dl_x86_cpu_features+0xe0>
+  801cab:	83 3d b2 a6 0c 00 0c 	cmpl   $0xc,0xca6b2(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801cb2:	7e 24                	jle    801cd8 <get_common_indices.constprop.0+0xd8>
+  801cb4:	b8 0d 00 00 00       	mov    $0xd,%eax
+  801cb9:	b9 01 00 00 00       	mov    $0x1,%ecx
+  801cbe:	0f a2                	cpuid  
+  801cc0:	89 05 0e a7 0c 00    	mov    %eax,0xca70e(%rip)        # 8cc3d4 <_dl_x86_cpu_features+0x74>
+  801cc6:	89 1d 0c a7 0c 00    	mov    %ebx,0xca70c(%rip)        # 8cc3d8 <_dl_x86_cpu_features+0x78>
+  801ccc:	89 0d 0a a7 0c 00    	mov    %ecx,0xca70a(%rip)        # 8cc3dc <_dl_x86_cpu_features+0x7c>
+  801cd2:	89 15 08 a7 0c 00    	mov    %edx,0xca708(%rip)        # 8cc3e0 <_dl_x86_cpu_features+0x80>
+  801cd8:	83 3d 85 a6 0c 00 13 	cmpl   $0x13,0xca685(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801cdf:	7e 21                	jle    801d02 <get_common_indices.constprop.0+0x102>
+  801ce1:	b8 14 00 00 00       	mov    $0x14,%eax
+  801ce6:	31 c9                	xor    %ecx,%ecx
+  801ce8:	0f a2                	cpuid  
+  801cea:	89 05 84 a7 0c 00    	mov    %eax,0xca784(%rip)        # 8cc474 <_dl_x86_cpu_features+0x114>
+  801cf0:	89 1d 82 a7 0c 00    	mov    %ebx,0xca782(%rip)        # 8cc478 <_dl_x86_cpu_features+0x118>
+  801cf6:	89 0d 80 a7 0c 00    	mov    %ecx,0xca780(%rip)        # 8cc47c <_dl_x86_cpu_features+0x11c>
+  801cfc:	89 15 7e a7 0c 00    	mov    %edx,0xca77e(%rip)        # 8cc480 <_dl_x86_cpu_features+0x120>
+  801d02:	83 3d 5b a6 0c 00 18 	cmpl   $0x18,0xca65b(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801d09:	7e 21                	jle    801d2c <get_common_indices.constprop.0+0x12c>
+  801d0b:	b8 19 00 00 00       	mov    $0x19,%eax
+  801d10:	31 c9                	xor    %ecx,%ecx
+  801d12:	0f a2                	cpuid  
+  801d14:	89 05 3a a7 0c 00    	mov    %eax,0xca73a(%rip)        # 8cc454 <_dl_x86_cpu_features+0xf4>
+  801d1a:	89 1d 38 a7 0c 00    	mov    %ebx,0xca738(%rip)        # 8cc458 <_dl_x86_cpu_features+0xf8>
+  801d20:	89 0d 36 a7 0c 00    	mov    %ecx,0xca736(%rip)        # 8cc45c <_dl_x86_cpu_features+0xfc>
+  801d26:	89 15 34 a7 0c 00    	mov    %edx,0xca734(%rip)        # 8cc460 <_dl_x86_cpu_features+0x100>
+  801d2c:	48 83 3d 0c a6 0c 00 	cmpq   $0x0,0xca60c(%rip)        # 8cc340 <_dl_minsigstacksize>
+  801d33:	00 
+  801d34:	75 28                	jne    801d5e <get_common_indices.constprop.0+0x15e>
+  801d36:	83 3d 27 a6 0c 00 0c 	cmpl   $0xc,0xca627(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801d3d:	7e 21                	jle    801d60 <get_common_indices.constprop.0+0x160>
+  801d3f:	f6 05 39 a6 0c 00 08 	testb  $0x8,0xca639(%rip)        # 8cc37f <_dl_x86_cpu_features+0x1f>
+  801d46:	74 18                	je     801d60 <get_common_indices.constprop.0+0x160>
+  801d48:	b8 0d 00 00 00       	mov    $0xd,%eax
+  801d4d:	31 c9                	xor    %ecx,%ecx
+  801d4f:	0f a2                	cpuid  
+  801d51:	8d 83 04 02 00 00    	lea    0x204(%rbx),%eax
+  801d57:	48 89 05 e2 a5 0c 00 	mov    %rax,0xca5e2(%rip)        # 8cc340 <_dl_minsigstacksize>
+  801d5e:	5b                   	pop    %rbx
+  801d5f:	c3                   	ret    
+  801d60:	48 c7 05 d5 a5 0c 00 	movq   $0x800,0xca5d5(%rip)        # 8cc340 <_dl_minsigstacksize>
+  801d67:	00 08 00 00 
+  801d6b:	5b                   	pop    %rbx
+  801d6c:	c3                   	ret    
+  801d6d:	c1 e8 14             	shr    $0x14,%eax
+  801d70:	0f b6 c0             	movzbl %al,%eax
+  801d73:	83 c0 0f             	add    $0xf,%eax
+  801d76:	89 07                	mov    %eax,(%rdi)
+  801d78:	41 8b 00             	mov    (%r8),%eax
+  801d7b:	01 06                	add    %eax,(%rsi)
+  801d7d:	e9 dc fe ff ff       	jmp    801c5e <get_common_indices.constprop.0+0x5e>
+  801d82:	66 66 2e 0f 1f 84 00 	data16 cs nopw 0x0(%rax,%rax,1)
+  801d89:	00 00 00 00 
+  801d8d:	0f 1f 00             	nopl   (%rax)
+
+0000000000801d90 <get_common_cache_info.constprop.0>:
+  801d90:	41 57                	push   %r15
+  801d92:	8b 05 d4 a5 0c 00    	mov    0xca5d4(%rip),%eax        # 8cc36c <_dl_x86_cpu_features+0xc>
+  801d98:	49 89 f9             	mov    %rdi,%r9
+  801d9b:	49 89 d2             	mov    %rdx,%r10
+  801d9e:	41 56                	push   %r14
+  801da0:	44 8b 3d c1 a5 0c 00 	mov    0xca5c1(%rip),%r15d        # 8cc368 <_dl_x86_cpu_features+0x8>
+  801da7:	41 55                	push   %r13
+  801da9:	44 8b 35 b4 a5 0c 00 	mov    0xca5b4(%rip),%r14d        # 8cc364 <_dl_x86_cpu_features+0x4>
+  801db0:	41 54                	push   %r12
+  801db2:	55                   	push   %rbp
+  801db3:	48 89 f5             	mov    %rsi,%rbp
+  801db6:	53                   	push   %rbx
+  801db7:	4c 8b 07             	mov    (%rdi),%r8
+  801dba:	89 44 24 fc          	mov    %eax,-0x4(%rsp)
+  801dbe:	8b 05 9c a5 0c 00    	mov    0xca59c(%rip),%eax        # 8cc360 <_dl_x86_cpu_features>
+  801dc4:	89 44 24 f4          	mov    %eax,-0xc(%rsp)
+  801dc8:	4d 85 c0             	test   %r8,%r8
+  801dcb:	0f 8e 57 01 00 00    	jle    801f28 <get_common_cache_info.constprop.0+0x198>
+  801dd1:	c7 44 24 f8 03 00 00 	movl   $0x3,-0x8(%rsp)
+  801dd8:	00 
+  801dd9:	45 31 e4             	xor    %r12d,%r12d
+  801ddc:	8b 3d 9e a5 0c 00    	mov    0xca59e(%rip),%edi        # 8cc380 <_dl_x86_cpu_features+0x20>
+  801de2:	81 e7 00 00 00 10    	and    $0x10000000,%edi
+  801de8:	74 46                	je     801e30 <get_common_cache_info.constprop.0+0xa0>
+  801dea:	41 83 fe 03          	cmp    $0x3,%r14d
+  801dee:	7f 51                	jg     801e41 <get_common_cache_info.constprop.0+0xb1>
+  801df0:	c6 44 24 f3 01       	movb   $0x1,-0xd(%rsp)
+  801df5:	31 f6                	xor    %esi,%esi
+  801df7:	0f b6 3d 7c a5 0c 00 	movzbl 0xca57c(%rip),%edi        # 8cc37a <_dl_x86_cpu_features+0x1a>
+  801dfe:	4d 85 c0             	test   %r8,%r8
+  801e01:	7e 11                	jle    801e14 <get_common_cache_info.constprop.0+0x84>
+  801e03:	85 ff                	test   %edi,%edi
+  801e05:	74 0d                	je     801e14 <get_common_cache_info.constprop.0+0x84>
+  801e07:	4c 89 c0             	mov    %r8,%rax
+  801e0a:	89 f9                	mov    %edi,%ecx
+  801e0c:	48 99                	cqto   
+  801e0e:	48 f7 f9             	idiv   %rcx
+  801e11:	49 89 c0             	mov    %rax,%r8
+  801e14:	80 7c 24 f3 00       	cmpb   $0x0,-0xd(%rsp)
+  801e19:	75 15                	jne    801e30 <get_common_cache_info.constprop.0+0xa0>
+  801e1b:	85 f6                	test   %esi,%esi
+  801e1d:	74 0e                	je     801e2d <get_common_cache_info.constprop.0+0x9d>
+  801e1f:	4c 89 d0             	mov    %r10,%rax
+  801e22:	48 63 f6             	movslq %esi,%rsi
+  801e25:	48 99                	cqto   
+  801e27:	48 f7 fe             	idiv   %rsi
+  801e2a:	49 89 c2             	mov    %rax,%r10
+  801e2d:	4d 01 d0             	add    %r10,%r8
+  801e30:	5b                   	pop    %rbx
+  801e31:	4d 89 01             	mov    %r8,(%r9)
+  801e34:	89 7d 00             	mov    %edi,0x0(%rbp)
+  801e37:	5d                   	pop    %rbp
+  801e38:	41 5c                	pop    %r12
+  801e3a:	41 5d                	pop    %r13
+  801e3c:	41 5e                	pop    %r14
+  801e3e:	41 5f                	pop    %r15
+  801e40:	c3                   	ret    
+  801e41:	bf 03 00 00 00       	mov    $0x3,%edi
+  801e46:	45 85 e4             	test   %r12d,%r12d
+  801e49:	74 09                	je     801e54 <get_common_cache_info.constprop.0+0xc4>
+  801e4b:	bf 01 00 00 00       	mov    $0x1,%edi
+  801e50:	41 83 cc ff          	or     $0xffffffff,%r12d
+  801e54:	31 c9                	xor    %ecx,%ecx
+  801e56:	83 7c 24 f4 01       	cmpl   $0x1,-0xc(%rsp)
+  801e5b:	c6 44 24 f3 01       	movb   $0x1,-0xd(%rsp)
+  801e60:	4d 89 c3             	mov    %r8,%r11
+  801e63:	be 00 00 00 00       	mov    $0x0,%esi
+  801e68:	41 bd 04 00 00 00    	mov    $0x4,%r13d
+  801e6e:	75 7b                	jne    801eeb <get_common_cache_info.constprop.0+0x15b>
+  801e70:	44 8d 41 01          	lea    0x1(%rcx),%r8d
+  801e74:	44 89 e8             	mov    %r13d,%eax
+  801e77:	0f a2                	cpuid  
+  801e79:	a8 1f                	test   $0x1f,%al
+  801e7b:	0f 84 b8 02 00 00    	je     802139 <get_common_cache_info.constprop.0+0x3a9>
+  801e81:	89 c1                	mov    %eax,%ecx
+  801e83:	c1 e9 05             	shr    $0x5,%ecx
+  801e86:	83 e1 07             	and    $0x7,%ecx
+  801e89:	83 f9 02             	cmp    $0x2,%ecx
+  801e8c:	0f 84 84 00 00 00    	je     801f16 <get_common_cache_info.constprop.0+0x186>
+  801e92:	83 f9 03             	cmp    $0x3,%ecx
+  801e95:	0f 85 85 00 00 00    	jne    801f20 <get_common_cache_info.constprop.0+0x190>
+  801e9b:	40 f6 c7 02          	test   $0x2,%dil
+  801e9f:	74 7f                	je     801f20 <get_common_cache_info.constprop.0+0x190>
+  801ea1:	c1 e8 0e             	shr    $0xe,%eax
+  801ea4:	d1 ea                	shr    %edx
+  801ea6:	83 e7 fd             	and    $0xfffffffd,%edi
+  801ea9:	25 ff 03 00 00       	and    $0x3ff,%eax
+  801eae:	41 89 c4             	mov    %eax,%r12d
+  801eb1:	89 d0                	mov    %edx,%eax
+  801eb3:	83 e0 01             	and    $0x1,%eax
+  801eb6:	88 44 24 f3          	mov    %al,-0xd(%rsp)
+  801eba:	e9 8a 00 00 00       	jmp    801f49 <get_common_cache_info.constprop.0+0x1b9>
+  801ebf:	90                   	nop
+  801ec0:	83 f9 03             	cmp    $0x3,%ecx
+  801ec3:	75 23                	jne    801ee8 <get_common_cache_info.constprop.0+0x158>
+  801ec5:	40 f6 c7 02          	test   $0x2,%dil
+  801ec9:	74 1d                	je     801ee8 <get_common_cache_info.constprop.0+0x158>
+  801ecb:	c1 e8 0e             	shr    $0xe,%eax
+  801ece:	d1 ea                	shr    %edx
+  801ed0:	83 e7 fd             	and    $0xfffffffd,%edi
+  801ed3:	25 ff 03 00 00       	and    $0x3ff,%eax
+  801ed8:	41 89 c4             	mov    %eax,%r12d
+  801edb:	89 d0                	mov    %edx,%eax
+  801edd:	83 e0 01             	and    $0x1,%eax
+  801ee0:	88 44 24 f3          	mov    %al,-0xd(%rsp)
+  801ee4:	85 ff                	test   %edi,%edi
+  801ee6:	74 65                	je     801f4d <get_common_cache_info.constprop.0+0x1bd>
+  801ee8:	44 89 c1             	mov    %r8d,%ecx
+  801eeb:	44 8d 41 01          	lea    0x1(%rcx),%r8d
+  801eef:	44 89 e8             	mov    %r13d,%eax
+  801ef2:	0f a2                	cpuid  
+  801ef4:	89 c1                	mov    %eax,%ecx
+  801ef6:	c1 e9 05             	shr    $0x5,%ecx
+  801ef9:	83 e1 07             	and    $0x7,%ecx
+  801efc:	83 f9 02             	cmp    $0x2,%ecx
+  801eff:	75 bf                	jne    801ec0 <get_common_cache_info.constprop.0+0x130>
+  801f01:	40 f6 c7 01          	test   $0x1,%dil
+  801f05:	74 e1                	je     801ee8 <get_common_cache_info.constprop.0+0x158>
+  801f07:	c1 e8 0e             	shr    $0xe,%eax
+  801f0a:	83 e7 fe             	and    $0xfffffffe,%edi
+  801f0d:	25 ff 03 00 00       	and    $0x3ff,%eax
+  801f12:	89 c6                	mov    %eax,%esi
+  801f14:	eb ce                	jmp    801ee4 <get_common_cache_info.constprop.0+0x154>
+  801f16:	40 f6 c7 01          	test   $0x1,%dil
+  801f1a:	75 20                	jne    801f3c <get_common_cache_info.constprop.0+0x1ac>
+  801f1c:	0f 1f 40 00          	nopl   0x0(%rax)
+  801f20:	44 89 c1             	mov    %r8d,%ecx
+  801f23:	e9 48 ff ff ff       	jmp    801e70 <get_common_cache_info.constprop.0+0xe0>
+  801f28:	c7 44 24 f8 02 00 00 	movl   $0x2,-0x8(%rsp)
+  801f2f:	00 
+  801f30:	49 89 d0             	mov    %rdx,%r8
+  801f33:	41 83 cc ff          	or     $0xffffffff,%r12d
+  801f37:	e9 a0 fe ff ff       	jmp    801ddc <get_common_cache_info.constprop.0+0x4c>
+  801f3c:	c1 e8 0e             	shr    $0xe,%eax
+  801f3f:	83 e7 fe             	and    $0xfffffffe,%edi
+  801f42:	25 ff 03 00 00       	and    $0x3ff,%eax
+  801f47:	89 c6                	mov    %eax,%esi
+  801f49:	85 ff                	test   %edi,%edi
+  801f4b:	75 d3                	jne    801f20 <get_common_cache_info.constprop.0+0x190>
+  801f4d:	41 83 ff 06          	cmp    $0x6,%r15d
+  801f51:	4d 89 d8             	mov    %r11,%r8
+  801f54:	41 0f 94 c7          	sete   %r15b
+  801f58:	83 7c 24 f4 03       	cmpl   $0x3,-0xc(%rsp)
+  801f5d:	0f 94 c0             	sete   %al
+  801f60:	44 84 f8             	test   %r15b,%al
+  801f63:	0f 85 b7 00 00 00    	jne    802020 <get_common_cache_info.constprop.0+0x290>
+  801f69:	41 83 fe 0a          	cmp    $0xa,%r14d
+  801f6d:	0f 8e ad 00 00 00    	jle    802020 <get_common_cache_info.constprop.0+0x290>
+  801f73:	8b 5c 24 f8          	mov    -0x8(%rsp),%ebx
+  801f77:	85 f6                	test   %esi,%esi
+  801f79:	0f 9f c2             	setg   %dl
+  801f7c:	31 c0                	xor    %eax,%eax
+  801f7e:	83 fb 03             	cmp    $0x3,%ebx
+  801f81:	0f 94 c0             	sete   %al
+  801f84:	21 d0                	and    %edx,%eax
+  801f86:	89 c7                	mov    %eax,%edi
+  801f88:	83 cf 02             	or     $0x2,%edi
+  801f8b:	45 85 e4             	test   %r12d,%r12d
+  801f8e:	0f 8e ce 01 00 00    	jle    802162 <get_common_cache_info.constprop.0+0x3d2>
+  801f94:	b8 0b 00 00 00       	mov    $0xb,%eax
+  801f99:	31 c9                	xor    %ecx,%ecx
+  801f9b:	0f a2                	cpuid  
+  801f9d:	0f b6 db             	movzbl %bl,%ebx
+  801fa0:	81 e1 00 ff 00 00    	and    $0xff00,%ecx
+  801fa6:	74 78                	je     802020 <get_common_cache_info.constprop.0+0x290>
+  801fa8:	85 db                	test   %ebx,%ebx
+  801faa:	74 74                	je     802020 <get_common_cache_info.constprop.0+0x290>
+  801fac:	41 83 ce ff          	or     $0xffffffff,%r14d
+  801fb0:	83 7c 24 f8 02       	cmpl   $0x2,-0x8(%rsp)
+  801fb5:	ba 01 00 00 00       	mov    $0x1,%edx
+  801fba:	4d 89 c3             	mov    %r8,%r11
+  801fbd:	41 bd 0b 00 00 00    	mov    $0xb,%r13d
+  801fc3:	75 31                	jne    801ff6 <get_common_cache_info.constprop.0+0x266>
+  801fc5:	e9 fd 00 00 00       	jmp    8020c7 <get_common_cache_info.constprop.0+0x337>
+  801fca:	81 f9 00 02 00 00    	cmp    $0x200,%ecx
+  801fd0:	0f 84 1d 01 00 00    	je     8020f3 <get_common_cache_info.constprop.0+0x363>
+  801fd6:	44 8d 42 01          	lea    0x1(%rdx),%r8d
+  801fda:	44 89 e8             	mov    %r13d,%eax
+  801fdd:	89 d1                	mov    %edx,%ecx
+  801fdf:	0f a2                	cpuid  
+  801fe1:	81 e1 00 ff 00 00    	and    $0xff00,%ecx
+  801fe7:	81 e3 ff 00 00 00    	and    $0xff,%ebx
+  801fed:	74 2e                	je     80201d <get_common_cache_info.constprop.0+0x28d>
+  801fef:	85 c9                	test   %ecx,%ecx
+  801ff1:	74 2a                	je     80201d <get_common_cache_info.constprop.0+0x28d>
+  801ff3:	44 89 c2             	mov    %r8d,%edx
+  801ff6:	81 f9 00 01 00 00    	cmp    $0x100,%ecx
+  801ffc:	75 cc                	jne    801fca <get_common_cache_info.constprop.0+0x23a>
+  801ffe:	40 f6 c7 01          	test   $0x1,%dil
+  802002:	74 d2                	je     801fd6 <get_common_cache_info.constprop.0+0x246>
+  802004:	0f bd ce             	bsr    %esi,%ecx
+  802007:	44 89 f6             	mov    %r14d,%esi
+  80200a:	83 c1 01             	add    $0x1,%ecx
+  80200d:	83 eb 01             	sub    $0x1,%ebx
+  802010:	83 e7 fe             	and    $0xfffffffe,%edi
+  802013:	d3 e6                	shl    %cl,%esi
+  802015:	f7 d6                	not    %esi
+  802017:	21 de                	and    %ebx,%esi
+  802019:	85 ff                	test   %edi,%edi
+  80201b:	75 b9                	jne    801fd6 <get_common_cache_info.constprop.0+0x246>
+  80201d:	4d 89 d8             	mov    %r11,%r8
+  802020:	85 f6                	test   %esi,%esi
+  802022:	74 03                	je     802027 <get_common_cache_info.constprop.0+0x297>
+  802024:	83 c6 01             	add    $0x1,%esi
+  802027:	45 85 e4             	test   %r12d,%r12d
+  80202a:	0f 8e eb 00 00 00    	jle    80211b <get_common_cache_info.constprop.0+0x38b>
+  802030:	83 7c 24 f8 02       	cmpl   $0x2,-0x8(%rsp)
+  802035:	41 8d 7c 24 01       	lea    0x1(%r12),%edi
+  80203a:	0f 85 be fd ff ff    	jne    801dfe <get_common_cache_info.constprop.0+0x6e>
+  802040:	85 f6                	test   %esi,%esi
+  802042:	0f 84 3e 01 00 00    	je     802186 <get_common_cache_info.constprop.0+0x3f6>
+  802048:	83 7c 24 f4 01       	cmpl   $0x1,-0xc(%rsp)
+  80204d:	89 f7                	mov    %esi,%edi
+  80204f:	0f 85 a9 fd ff ff    	jne    801dfe <get_common_cache_info.constprop.0+0x6e>
+  802055:	83 fe 02             	cmp    $0x2,%esi
+  802058:	0f 86 a0 fd ff ff    	jbe    801dfe <get_common_cache_info.constprop.0+0x6e>
+  80205e:	45 84 ff             	test   %r15b,%r15b
+  802061:	0f 84 97 fd ff ff    	je     801dfe <get_common_cache_info.constprop.0+0x6e>
+  802067:	8b 4c 24 fc          	mov    -0x4(%rsp),%ecx
+  80206b:	83 e9 37             	sub    $0x37,%ecx
+  80206e:	83 f9 26             	cmp    $0x26,%ecx
+  802071:	0f 87 87 fd ff ff    	ja     801dfe <get_common_cache_info.constprop.0+0x6e>
+  802077:	48 b8 01 00 48 00 48 	movabs $0x4800480001,%rax
+  80207e:	00 00 00 
+  802081:	bf 02 00 00 00       	mov    $0x2,%edi
+  802086:	48 d3 e8             	shr    %cl,%rax
+  802089:	a8 01                	test   $0x1,%al
+  80208b:	0f 44 fe             	cmove  %esi,%edi
+  80208e:	e9 6b fd ff ff       	jmp    801dfe <get_common_cache_info.constprop.0+0x6e>
+  802093:	81 f9 00 02 00 00    	cmp    $0x200,%ecx
+  802099:	0f 84 a2 00 00 00    	je     802141 <get_common_cache_info.constprop.0+0x3b1>
+  80209f:	44 8d 42 01          	lea    0x1(%rdx),%r8d
+  8020a3:	44 89 e8             	mov    %r13d,%eax
+  8020a6:	89 d1                	mov    %edx,%ecx
+  8020a8:	0f a2                	cpuid  
+  8020aa:	81 e1 00 ff 00 00    	and    $0xff00,%ecx
+  8020b0:	81 e3 ff 00 00 00    	and    $0xff,%ebx
+  8020b6:	0f 84 61 ff ff ff    	je     80201d <get_common_cache_info.constprop.0+0x28d>
+  8020bc:	85 c9                	test   %ecx,%ecx
+  8020be:	0f 84 59 ff ff ff    	je     80201d <get_common_cache_info.constprop.0+0x28d>
+  8020c4:	44 89 c2             	mov    %r8d,%edx
+  8020c7:	81 f9 00 01 00 00    	cmp    $0x100,%ecx
+  8020cd:	75 c4                	jne    802093 <get_common_cache_info.constprop.0+0x303>
+  8020cf:	40 f6 c7 01          	test   $0x1,%dil
+  8020d3:	74 ca                	je     80209f <get_common_cache_info.constprop.0+0x30f>
+  8020d5:	0f bd ce             	bsr    %esi,%ecx
+  8020d8:	44 89 f6             	mov    %r14d,%esi
+  8020db:	83 c1 01             	add    $0x1,%ecx
+  8020de:	83 eb 01             	sub    $0x1,%ebx
+  8020e1:	83 e7 fe             	and    $0xfffffffe,%edi
+  8020e4:	d3 e6                	shl    %cl,%esi
+  8020e6:	f7 d6                	not    %esi
+  8020e8:	21 de                	and    %ebx,%esi
+  8020ea:	85 ff                	test   %edi,%edi
+  8020ec:	75 b1                	jne    80209f <get_common_cache_info.constprop.0+0x30f>
+  8020ee:	e9 2a ff ff ff       	jmp    80201d <get_common_cache_info.constprop.0+0x28d>
+  8020f3:	40 f6 c7 02          	test   $0x2,%dil
+  8020f7:	0f 84 d9 fe ff ff    	je     801fd6 <get_common_cache_info.constprop.0+0x246>
+  8020fd:	41 0f bd cc          	bsr    %r12d,%ecx
+  802101:	45 89 f4             	mov    %r14d,%r12d
+  802104:	83 c1 01             	add    $0x1,%ecx
+  802107:	83 eb 01             	sub    $0x1,%ebx
+  80210a:	83 e7 fd             	and    $0xfffffffd,%edi
+  80210d:	41 d3 e4             	shl    %cl,%r12d
+  802110:	41 f7 d4             	not    %r12d
+  802113:	41 21 dc             	and    %ebx,%r12d
+  802116:	e9 fe fe ff ff       	jmp    802019 <get_common_cache_info.constprop.0+0x289>
+  80211b:	83 7c 24 f8 02       	cmpl   $0x2,-0x8(%rsp)
+  802120:	0f 84 1a ff ff ff    	je     802040 <get_common_cache_info.constprop.0+0x2b0>
+  802126:	31 ff                	xor    %edi,%edi
+  802128:	45 85 e4             	test   %r12d,%r12d
+  80212b:	0f 84 e3 fc ff ff    	je     801e14 <get_common_cache_info.constprop.0+0x84>
+  802131:	83 cf ff             	or     $0xffffffff,%edi
+  802134:	e9 c5 fc ff ff       	jmp    801dfe <get_common_cache_info.constprop.0+0x6e>
+  802139:	4d 89 d8             	mov    %r11,%r8
+  80213c:	e9 b6 fc ff ff       	jmp    801df7 <get_common_cache_info.constprop.0+0x67>
+  802141:	40 f6 c7 02          	test   $0x2,%dil
+  802145:	0f 84 54 ff ff ff    	je     80209f <get_common_cache_info.constprop.0+0x30f>
+  80214b:	0f bd ce             	bsr    %esi,%ecx
+  80214e:	44 89 f6             	mov    %r14d,%esi
+  802151:	83 c1 01             	add    $0x1,%ecx
+  802154:	83 eb 01             	sub    $0x1,%ebx
+  802157:	83 e7 fd             	and    $0xfffffffd,%edi
+  80215a:	d3 e6                	shl    %cl,%esi
+  80215c:	f7 d6                	not    %esi
+  80215e:	21 de                	and    %ebx,%esi
+  802160:	eb 88                	jmp    8020ea <get_common_cache_info.constprop.0+0x35a>
+  802162:	31 ff                	xor    %edi,%edi
+  802164:	83 fb 02             	cmp    $0x2,%ebx
+  802167:	40 0f 94 c7          	sete   %dil
+  80216b:	21 d7                	and    %edx,%edi
+  80216d:	01 ff                	add    %edi,%edi
+  80216f:	09 c7                	or     %eax,%edi
+  802171:	0f 85 1d fe ff ff    	jne    801f94 <get_common_cache_info.constprop.0+0x204>
+  802177:	85 f6                	test   %esi,%esi
+  802179:	0f 85 a5 fe ff ff    	jne    802024 <get_common_cache_info.constprop.0+0x294>
+  80217f:	83 7c 24 f8 02       	cmpl   $0x2,-0x8(%rsp)
+  802184:	75 a0                	jne    802126 <get_common_cache_info.constprop.0+0x396>
+  802186:	31 ff                	xor    %edi,%edi
+  802188:	80 7c 24 f3 00       	cmpb   $0x0,-0xd(%rsp)
+  80218d:	0f 84 9a fc ff ff    	je     801e2d <get_common_cache_info.constprop.0+0x9d>
+  802193:	e9 98 fc ff ff       	jmp    801e30 <get_common_cache_info.constprop.0+0xa0>
+  802198:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  80219f:	00 
+
+00000000008021a0 <intel_check_word.constprop.0>:
+  8021a0:	85 f6                	test   %esi,%esi
+  8021a2:	0f 88 06 01 00 00    	js     8022ae <intel_check_word.constprop.0+0x10e>
+  8021a8:	41 89 fb             	mov    %edi,%r11d
+  8021ab:	41 54                	push   %r12
+  8021ad:	89 f7                	mov    %esi,%edi
+  8021af:	55                   	push   %rbp
+  8021b0:	41 8d 83 47 ff ff ff 	lea    -0xb9(%r11),%eax
+  8021b7:	48 89 d5             	mov    %rdx,%rbp
+  8021ba:	ba ab aa aa aa       	mov    $0xaaaaaaab,%edx
+  8021bf:	48 0f af c2          	imul   %rdx,%rax
+  8021c3:	53                   	push   %rbx
+  8021c4:	48 c1 e8 21          	shr    $0x21,%rax
+  8021c8:	44 8d 14 40          	lea    (%rax,%rax,2),%r10d
+  8021cc:	85 f6                	test   %esi,%esi
+  8021ce:	0f 84 c5 00 00 00    	je     802299 <intel_check_word.constprop.0+0xf9>
+  8021d4:	83 3d 8d a1 0c 00 0f 	cmpl   $0xf,0xca18d(%rip)        # 8cc368 <_dl_x86_cpu_features+0x8>
+  8021db:	48 89 cb             	mov    %rcx,%rbx
+  8021de:	4c 8d 0d 7b 5f 09 00 	lea    0x95f7b(%rip),%r9        # 898160 <intel_02_known>
+  8021e5:	41 0f 94 c4          	sete   %r12b
+  8021e9:	83 3d 7c a1 0c 00 06 	cmpl   $0x6,0xca17c(%rip)        # 8cc36c <_dl_x86_cpu_features+0xc>
+  8021f0:	0f 94 c0             	sete   %al
+  8021f3:	41 21 c4             	and    %eax,%r12d
+  8021f6:	eb 1e                	jmp    802216 <intel_check_word.constprop.0+0x76>
+  8021f8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  8021ff:	00 
+  802200:	c6 03 01             	movb   $0x1,(%rbx)
+  802203:	41 83 fa 09          	cmp    $0x9,%r10d
+  802207:	0f 84 8c 00 00 00    	je     802299 <intel_check_word.constprop.0+0xf9>
+  80220d:	c1 ef 08             	shr    $0x8,%edi
+  802210:	0f 84 83 00 00 00    	je     802299 <intel_check_word.constprop.0+0xf9>
+  802216:	40 0f b6 c7          	movzbl %dil,%eax
+  80221a:	40 80 ff 40          	cmp    $0x40,%dil
+  80221e:	74 e0                	je     802200 <intel_check_word.constprop.0+0x60>
+  802220:	3d ff 00 00 00       	cmp    $0xff,%eax
+  802225:	0f 84 86 00 00 00    	je     8022b1 <intel_check_word.constprop.0+0x111>
+  80222b:	83 f8 49             	cmp    $0x49,%eax
+  80222e:	75 15                	jne    802245 <intel_check_word.constprop.0+0xa5>
+  802230:	41 83 fa 09          	cmp    $0x9,%r10d
+  802234:	75 0f                	jne    802245 <intel_check_word.constprop.0+0xa5>
+  802236:	45 84 e4             	test   %r12b,%r12b
+  802239:	74 0a                	je     802245 <intel_check_word.constprop.0+0xa5>
+  80223b:	41 83 eb 03          	sub    $0x3,%r11d
+  80223f:	41 ba 06 00 00 00    	mov    $0x6,%r10d
+  802245:	41 89 f8             	mov    %edi,%r8d
+  802248:	be 44 00 00 00       	mov    $0x44,%esi
+  80224d:	31 d2                	xor    %edx,%edx
+  80224f:	90                   	nop
+  802250:	48 8d 04 32          	lea    (%rdx,%rsi,1),%rax
+  802254:	48 d1 e8             	shr    %rax
+  802257:	49 8d 0c c1          	lea    (%r9,%rax,8),%rcx
+  80225b:	44 3a 01             	cmp    (%rcx),%r8b
+  80225e:	74 1a                	je     80227a <intel_check_word.constprop.0+0xda>
+  802260:	73 3e                	jae    8022a0 <intel_check_word.constprop.0+0x100>
+  802262:	48 39 d0             	cmp    %rdx,%rax
+  802265:	76 a6                	jbe    80220d <intel_check_word.constprop.0+0x6d>
+  802267:	48 89 c6             	mov    %rax,%rsi
+  80226a:	48 8d 04 32          	lea    (%rdx,%rsi,1),%rax
+  80226e:	48 d1 e8             	shr    %rax
+  802271:	49 8d 0c c1          	lea    (%r9,%rax,8),%rcx
+  802275:	44 3a 01             	cmp    (%rcx),%r8b
+  802278:	75 e6                	jne    802260 <intel_check_word.constprop.0+0xc0>
+  80227a:	0f b6 51 03          	movzbl 0x3(%rcx),%edx
+  80227e:	44 39 d2             	cmp    %r10d,%edx
+  802281:	0f 84 cb 00 00 00    	je     802352 <intel_check_word.constprop.0+0x1b2>
+  802287:	80 fa 06             	cmp    $0x6,%dl
+  80228a:	75 81                	jne    80220d <intel_check_word.constprop.0+0x6d>
+  80228c:	c1 ef 08             	shr    $0x8,%edi
+  80228f:	c6 45 00 01          	movb   $0x1,0x0(%rbp)
+  802293:	0f 85 7d ff ff ff    	jne    802216 <intel_check_word.constprop.0+0x76>
+  802299:	31 c0                	xor    %eax,%eax
+  80229b:	5b                   	pop    %rbx
+  80229c:	5d                   	pop    %rbp
+  80229d:	41 5c                	pop    %r12
+  80229f:	c3                   	ret    
+  8022a0:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  8022a4:	48 39 f2             	cmp    %rsi,%rdx
+  8022a7:	72 a7                	jb     802250 <intel_check_word.constprop.0+0xb0>
+  8022a9:	e9 5f ff ff ff       	jmp    80220d <intel_check_word.constprop.0+0x6d>
+  8022ae:	31 c0                	xor    %eax,%eax
+  8022b0:	c3                   	ret    
+  8022b1:	b8 04 00 00 00       	mov    $0x4,%eax
+  8022b6:	31 c9                	xor    %ecx,%ecx
+  8022b8:	0f a2                	cpuid  
+  8022ba:	89 c2                	mov    %eax,%edx
+  8022bc:	83 e2 1f             	and    $0x1f,%edx
+  8022bf:	74 d8                	je     802299 <intel_check_word.constprop.0+0xf9>
+  8022c1:	31 f6                	xor    %esi,%esi
+  8022c3:	41 83 fa 03          	cmp    $0x3,%r10d
+  8022c7:	0f 84 a3 01 00 00    	je     802470 <intel_check_word.constprop.0+0x2d0>
+  8022cd:	45 85 d2             	test   %r10d,%r10d
+  8022d0:	0f 84 5a 01 00 00    	je     802430 <intel_check_word.constprop.0+0x290>
+  8022d6:	41 b8 04 00 00 00    	mov    $0x4,%r8d
+  8022dc:	eb 18                	jmp    8022f6 <intel_check_word.constprop.0+0x156>
+  8022de:	66 90                	xchg   %ax,%ax
+  8022e0:	40 84 ff             	test   %dil,%dil
+  8022e3:	74 23                	je     802308 <intel_check_word.constprop.0+0x168>
+  8022e5:	83 c6 01             	add    $0x1,%esi
+  8022e8:	44 89 c0             	mov    %r8d,%eax
+  8022eb:	89 f1                	mov    %esi,%ecx
+  8022ed:	0f a2                	cpuid  
+  8022ef:	89 c2                	mov    %eax,%edx
+  8022f1:	83 e2 1f             	and    $0x1f,%edx
+  8022f4:	74 a3                	je     802299 <intel_check_word.constprop.0+0xf9>
+  8022f6:	c1 e8 05             	shr    $0x5,%eax
+  8022f9:	83 e0 07             	and    $0x7,%eax
+  8022fc:	83 f8 01             	cmp    $0x1,%eax
+  8022ff:	40 0f 94 c7          	sete   %dil
+  802303:	83 fa 01             	cmp    $0x1,%edx
+  802306:	74 d8                	je     8022e0 <intel_check_word.constprop.0+0x140>
+  802308:	83 fa 02             	cmp    $0x2,%edx
+  80230b:	75 05                	jne    802312 <intel_check_word.constprop.0+0x172>
+  80230d:	40 84 ff             	test   %dil,%dil
+  802310:	75 d3                	jne    8022e5 <intel_check_word.constprop.0+0x145>
+  802312:	83 f8 02             	cmp    $0x2,%eax
+  802315:	0f 85 9d 00 00 00    	jne    8023b8 <intel_check_word.constprop.0+0x218>
+  80231b:	41 83 fa 06          	cmp    $0x6,%r10d
+  80231f:	0f 85 93 00 00 00    	jne    8023b8 <intel_check_word.constprop.0+0x218>
+  802325:	41 8d 83 47 ff ff ff 	lea    -0xb9(%r11),%eax
+  80232c:	44 29 d0             	sub    %r10d,%eax
+  80232f:	74 4d                	je     80237e <intel_check_word.constprop.0+0x1de>
+  802331:	83 f8 01             	cmp    $0x1,%eax
+  802334:	0f 84 a6 00 00 00    	je     8023e0 <intel_check_word.constprop.0+0x240>
+  80233a:	83 f8 02             	cmp    $0x2,%eax
+  80233d:	0f 85 c9 00 00 00    	jne    80240c <intel_check_word.constprop.0+0x26c>
+  802343:	81 e3 ff 0f 00 00    	and    $0xfff,%ebx
+  802349:	48 8d 43 01          	lea    0x1(%rbx),%rax
+  80234d:	e9 49 ff ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  802352:	41 8d 83 47 ff ff ff 	lea    -0xb9(%r11),%eax
+  802359:	44 29 d0             	sub    %r10d,%eax
+  80235c:	74 52                	je     8023b0 <intel_check_word.constprop.0+0x210>
+  80235e:	83 f8 01             	cmp    $0x1,%eax
+  802361:	74 12                	je     802375 <intel_check_word.constprop.0+0x1d5>
+  802363:	83 f8 02             	cmp    $0x2,%eax
+  802366:	0f 85 81 00 00 00    	jne    8023ed <intel_check_word.constprop.0+0x24d>
+  80236c:	0f b6 41 02          	movzbl 0x2(%rcx),%eax
+  802370:	e9 26 ff ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  802375:	0f b6 41 01          	movzbl 0x1(%rcx),%eax
+  802379:	e9 1d ff ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  80237e:	89 d8                	mov    %ebx,%eax
+  802380:	89 da                	mov    %ebx,%edx
+  802382:	c1 eb 0c             	shr    $0xc,%ebx
+  802385:	c1 e8 16             	shr    $0x16,%eax
+  802388:	81 e2 ff 0f 00 00    	and    $0xfff,%edx
+  80238e:	83 c2 01             	add    $0x1,%edx
+  802391:	83 c0 01             	add    $0x1,%eax
+  802394:	0f af c2             	imul   %edx,%eax
+  802397:	8d 51 01             	lea    0x1(%rcx),%edx
+  80239a:	0f af c2             	imul   %edx,%eax
+  80239d:	89 da                	mov    %ebx,%edx
+  80239f:	81 e2 ff 03 00 00    	and    $0x3ff,%edx
+  8023a5:	83 c2 01             	add    $0x1,%edx
+  8023a8:	0f af c2             	imul   %edx,%eax
+  8023ab:	e9 eb fe ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  8023b0:	8b 41 04             	mov    0x4(%rcx),%eax
+  8023b3:	e9 e3 fe ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  8023b8:	83 f8 03             	cmp    $0x3,%eax
+  8023bb:	75 0a                	jne    8023c7 <intel_check_word.constprop.0+0x227>
+  8023bd:	41 83 fa 09          	cmp    $0x9,%r10d
+  8023c1:	0f 84 5e ff ff ff    	je     802325 <intel_check_word.constprop.0+0x185>
+  8023c7:	83 f8 04             	cmp    $0x4,%eax
+  8023ca:	0f 85 15 ff ff ff    	jne    8022e5 <intel_check_word.constprop.0+0x145>
+  8023d0:	41 83 fa 0c          	cmp    $0xc,%r10d
+  8023d4:	0f 84 4b ff ff ff    	je     802325 <intel_check_word.constprop.0+0x185>
+  8023da:	e9 06 ff ff ff       	jmp    8022e5 <intel_check_word.constprop.0+0x145>
+  8023df:	90                   	nop
+  8023e0:	89 d8                	mov    %ebx,%eax
+  8023e2:	c1 e8 16             	shr    $0x16,%eax
+  8023e5:	83 c0 01             	add    $0x1,%eax
+  8023e8:	e9 ae fe ff ff       	jmp    80229b <intel_check_word.constprop.0+0xfb>
+  8023ed:	48 8d 0d 7c 60 09 00 	lea    0x9607c(%rip),%rcx        # 898470 <__PRETTY_FUNCTION__.1>
+  8023f4:	ba e7 00 00 00       	mov    $0xe7,%edx
+  8023f9:	48 8d 35 80 5f 09 00 	lea    0x95f80(%rip),%rsi        # 898380 <intel_02_known+0x220>
+  802400:	48 8d 3d 97 5f 09 00 	lea    0x95f97(%rip),%rdi        # 89839e <intel_02_known+0x23e>
+  802407:	e8 24 20 00 00       	call   804430 <__assert_fail>
+  80240c:	48 8d 0d 5d 60 09 00 	lea    0x9605d(%rip),%rcx        # 898470 <__PRETTY_FUNCTION__.1>
+  802413:	ba b7 00 00 00       	mov    $0xb7,%edx
+  802418:	48 8d 35 61 5f 09 00 	lea    0x95f61(%rip),%rsi        # 898380 <intel_02_known+0x220>
+  80241f:	48 8d 3d 78 5f 09 00 	lea    0x95f78(%rip),%rdi        # 89839e <intel_02_known+0x23e>
+  802426:	e8 05 20 00 00       	call   804430 <__assert_fail>
+  80242b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  802430:	bf 04 00 00 00       	mov    $0x4,%edi
+  802435:	eb 18                	jmp    80244f <intel_check_word.constprop.0+0x2af>
+  802437:	84 c0                	test   %al,%al
+  802439:	74 25                	je     802460 <intel_check_word.constprop.0+0x2c0>
+  80243b:	83 c6 01             	add    $0x1,%esi
+  80243e:	89 f8                	mov    %edi,%eax
+  802440:	89 f1                	mov    %esi,%ecx
+  802442:	0f a2                	cpuid  
+  802444:	89 c2                	mov    %eax,%edx
+  802446:	83 e2 1f             	and    $0x1f,%edx
+  802449:	0f 84 4a fe ff ff    	je     802299 <intel_check_word.constprop.0+0xf9>
+  80244f:	c1 e8 05             	shr    $0x5,%eax
+  802452:	83 e0 07             	and    $0x7,%eax
+  802455:	83 f8 01             	cmp    $0x1,%eax
+  802458:	0f 94 c0             	sete   %al
+  80245b:	83 fa 01             	cmp    $0x1,%edx
+  80245e:	74 d7                	je     802437 <intel_check_word.constprop.0+0x297>
+  802460:	83 fa 02             	cmp    $0x2,%edx
+  802463:	75 d6                	jne    80243b <intel_check_word.constprop.0+0x29b>
+  802465:	84 c0                	test   %al,%al
+  802467:	0f 85 b8 fe ff ff    	jne    802325 <intel_check_word.constprop.0+0x185>
+  80246d:	eb cc                	jmp    80243b <intel_check_word.constprop.0+0x29b>
+  80246f:	90                   	nop
+  802470:	bf 04 00 00 00       	mov    $0x4,%edi
+  802475:	c1 e8 05             	shr    $0x5,%eax
+  802478:	83 e0 07             	and    $0x7,%eax
+  80247b:	83 f8 01             	cmp    $0x1,%eax
+  80247e:	75 09                	jne    802489 <intel_check_word.constprop.0+0x2e9>
+  802480:	83 fa 01             	cmp    $0x1,%edx
+  802483:	0f 84 9c fe ff ff    	je     802325 <intel_check_word.constprop.0+0x185>
+  802489:	83 c6 01             	add    $0x1,%esi
+  80248c:	89 f8                	mov    %edi,%eax
+  80248e:	89 f1                	mov    %esi,%ecx
+  802490:	0f a2                	cpuid  
+  802492:	89 c2                	mov    %eax,%edx
+  802494:	83 e2 1f             	and    $0x1f,%edx
+  802497:	75 dc                	jne    802475 <intel_check_word.constprop.0+0x2d5>
+  802499:	e9 fb fd ff ff       	jmp    802299 <intel_check_word.constprop.0+0xf9>
+  80249e:	66 90                	xchg   %ax,%ax
+
+00000000008024a0 <handle_intel.constprop.0>:
+  8024a0:	83 3d bd 9e 0c 00 01 	cmpl   $0x1,0xc9ebd(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  8024a7:	0f 86 dc 00 00 00    	jbe    802589 <handle_intel.constprop.0+0xe9>
+  8024ad:	41 57                	push   %r15
+  8024af:	41 56                	push   %r14
+  8024b1:	41 be 01 00 00 00    	mov    $0x1,%r14d
+  8024b7:	41 55                	push   %r13
+  8024b9:	41 54                	push   %r12
+  8024bb:	55                   	push   %rbp
+  8024bc:	89 fd                	mov    %edi,%ebp
+  8024be:	53                   	push   %rbx
+  8024bf:	48 83 ec 28          	sub    $0x28,%rsp
+  8024c3:	c6 44 24 1e 00       	movb   $0x0,0x1e(%rsp)
+  8024c8:	4c 8d 6c 24 1e       	lea    0x1e(%rsp),%r13
+  8024cd:	4c 8d 64 24 1f       	lea    0x1f(%rsp),%r12
+  8024d2:	c6 44 24 1f 00       	movb   $0x0,0x1f(%rsp)
+  8024d7:	c7 44 24 0c 01 00 00 	movl   $0x1,0xc(%rsp)
+  8024de:	00 
+  8024df:	eb 0a                	jmp    8024eb <handle_intel.constprop.0+0x4b>
+  8024e1:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  8024e8:	41 89 d6             	mov    %edx,%r14d
+  8024eb:	b8 02 00 00 00       	mov    $0x2,%eax
+  8024f0:	0f a2                	cpuid  
+  8024f2:	89 54 24 08          	mov    %edx,0x8(%rsp)
+  8024f6:	41 89 cf             	mov    %ecx,%r15d
+  8024f9:	89 c6                	mov    %eax,%esi
+  8024fb:	41 83 fe 01          	cmp    $0x1,%r14d
+  8024ff:	75 0a                	jne    80250b <handle_intel.constprop.0+0x6b>
+  802501:	0f b6 c0             	movzbl %al,%eax
+  802504:	40 30 f6             	xor    %sil,%sil
+  802507:	89 44 24 0c          	mov    %eax,0xc(%rsp)
+  80250b:	4c 89 e9             	mov    %r13,%rcx
+  80250e:	4c 89 e2             	mov    %r12,%rdx
+  802511:	89 ef                	mov    %ebp,%edi
+  802513:	e8 88 fc ff ff       	call   8021a0 <intel_check_word.constprop.0>
+  802518:	48 85 c0             	test   %rax,%rax
+  80251b:	75 5d                	jne    80257a <handle_intel.constprop.0+0xda>
+  80251d:	4c 89 e9             	mov    %r13,%rcx
+  802520:	4c 89 e2             	mov    %r12,%rdx
+  802523:	89 de                	mov    %ebx,%esi
+  802525:	89 ef                	mov    %ebp,%edi
+  802527:	e8 74 fc ff ff       	call   8021a0 <intel_check_word.constprop.0>
+  80252c:	48 85 c0             	test   %rax,%rax
+  80252f:	75 49                	jne    80257a <handle_intel.constprop.0+0xda>
+  802531:	4c 89 e9             	mov    %r13,%rcx
+  802534:	4c 89 e2             	mov    %r12,%rdx
+  802537:	44 89 fe             	mov    %r15d,%esi
+  80253a:	89 ef                	mov    %ebp,%edi
+  80253c:	e8 5f fc ff ff       	call   8021a0 <intel_check_word.constprop.0>
+  802541:	48 85 c0             	test   %rax,%rax
+  802544:	75 34                	jne    80257a <handle_intel.constprop.0+0xda>
+  802546:	8b 74 24 08          	mov    0x8(%rsp),%esi
+  80254a:	4c 89 e9             	mov    %r13,%rcx
+  80254d:	4c 89 e2             	mov    %r12,%rdx
+  802550:	89 ef                	mov    %ebp,%edi
+  802552:	e8 49 fc ff ff       	call   8021a0 <intel_check_word.constprop.0>
+  802557:	48 85 c0             	test   %rax,%rax
+  80255a:	75 1e                	jne    80257a <handle_intel.constprop.0+0xda>
+  80255c:	41 8d 56 01          	lea    0x1(%r14),%edx
+  802560:	44 39 74 24 0c       	cmp    %r14d,0xc(%rsp)
+  802565:	77 81                	ja     8024e8 <handle_intel.constprop.0+0x48>
+  802567:	81 ed bf 00 00 00    	sub    $0xbf,%ebp
+  80256d:	83 fd 05             	cmp    $0x5,%ebp
+  802570:	77 08                	ja     80257a <handle_intel.constprop.0+0xda>
+  802572:	0f b6 44 24 1e       	movzbl 0x1e(%rsp),%eax
+  802577:	48 f7 d8             	neg    %rax
+  80257a:	48 83 c4 28          	add    $0x28,%rsp
+  80257e:	5b                   	pop    %rbx
+  80257f:	5d                   	pop    %rbp
+  802580:	41 5c                	pop    %r12
+  802582:	41 5d                	pop    %r13
+  802584:	41 5e                	pop    %r14
+  802586:	41 5f                	pop    %r15
+  802588:	c3                   	ret    
+  802589:	48 83 c8 ff          	or     $0xffffffffffffffff,%rax
+  80258d:	c3                   	ret    
+  80258e:	66 90                	xchg   %ax,%ax
+
+0000000000802590 <update_active.constprop.0>:
+  802590:	41 57                	push   %r15
+  802592:	41 56                	push   %r14
+  802594:	41 55                	push   %r13
+  802596:	41 54                	push   %r12
+  802598:	55                   	push   %rbp
+  802599:	53                   	push   %rbx
+  80259a:	48 81 ec a0 00 00 00 	sub    $0xa0,%rsp
+  8025a1:	44 8b 0d d4 9d 0c 00 	mov    0xc9dd4(%rip),%r9d        # 8cc37c <_dl_x86_cpu_features+0x1c>
+  8025a8:	44 8b 05 ed 9d 0c 00 	mov    0xc9ded(%rip),%r8d        # 8cc39c <_dl_x86_cpu_features+0x3c>
+  8025af:	44 8b 2d e2 9d 0c 00 	mov    0xc9de2(%rip),%r13d        # 8cc398 <_dl_x86_cpu_features+0x38>
+  8025b6:	44 8b 35 c3 9d 0c 00 	mov    0xc9dc3(%rip),%r14d        # 8cc380 <_dl_x86_cpu_features+0x20>
+  8025bd:	44 89 c9             	mov    %r9d,%ecx
+  8025c0:	44 89 c8             	mov    %r9d,%eax
+  8025c3:	45 89 ca             	mov    %r9d,%r10d
+  8025c6:	44 89 c3             	mov    %r8d,%ebx
+  8025c9:	41 81 e2 00 00 00 40 	and    $0x40000000,%r10d
+  8025d0:	83 e3 10             	and    $0x10,%ebx
+  8025d3:	44 89 f7             	mov    %r14d,%edi
+  8025d6:	44 89 ea             	mov    %r13d,%edx
+  8025d9:	81 e1 00 00 00 08    	and    $0x8000000,%ecx
+  8025df:	89 5c 24 8c          	mov    %ebx,-0x74(%rsp)
+  8025e3:	44 89 ee             	mov    %r13d,%esi
+  8025e6:	45 89 c3             	mov    %r8d,%r11d
+  8025e9:	25 03 22 d8 02       	and    $0x2d82203,%eax
+  8025ee:	0b 05 98 9d 0c 00    	or     0xc9d98(%rip),%eax        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  8025f4:	44 8b 3d 39 9e 0c 00 	mov    0xc9e39(%rip),%r15d        # 8cc434 <_dl_x86_cpu_features+0xd4>
+  8025fb:	81 e7 10 81 88 17    	and    $0x17888110,%edi
+  802601:	09 c8                	or     %ecx,%eax
+  802603:	44 8b 25 96 9d 0c 00 	mov    0xc9d96(%rip),%r12d        # 8cc3a0 <_dl_x86_cpu_features+0x40>
+  80260a:	0b 3d 80 9d 0c 00    	or     0xc9d80(%rip),%edi        # 8cc390 <_dl_x86_cpu_features+0x30>
+  802610:	81 e2 18 03 8c 21    	and    $0x218c0318,%edx
+  802616:	41 09 c2             	or     %eax,%r10d
+  802619:	8b 05 9d 9d 0c 00    	mov    0xc9d9d(%rip),%eax        # 8cc3bc <_dl_x86_cpu_features+0x5c>
+  80261f:	0b 15 83 9d 0c 00    	or     0xc9d83(%rip),%edx        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  802625:	81 e6 00 08 00 00    	and    $0x800,%esi
+  80262b:	09 d6                	or     %edx,%esi
+  80262d:	89 3d 5d 9d 0c 00    	mov    %edi,0xc9d5d(%rip)        # 8cc390 <_dl_x86_cpu_features+0x30>
+  802633:	44 89 e5             	mov    %r12d,%ebp
+  802636:	89 44 24 90          	mov    %eax,-0x70(%rsp)
+  80263a:	25 61 01 20 00       	and    $0x200161,%eax
+  80263f:	0b 05 87 9d 0c 00    	or     0xc9d87(%rip),%eax        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  802645:	89 c3                	mov    %eax,%ebx
+  802647:	89 44 24 94          	mov    %eax,-0x6c(%rsp)
+  80264b:	8b 05 6f 9d 0c 00    	mov    0xc9d6f(%rip),%eax        # 8cc3c0 <_dl_x86_cpu_features+0x60>
+  802651:	66 0f 6e c3          	movd   %ebx,%xmm0
+  802655:	44 89 fb             	mov    %r15d,%ebx
+  802658:	44 89 15 2d 9d 0c 00 	mov    %r10d,0xc9d2d(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  80265f:	25 00 00 00 08       	and    $0x8000000,%eax
+  802664:	0b 05 66 9d 0c 00    	or     0xc9d66(%rip),%eax        # 8cc3d0 <_dl_x86_cpu_features+0x70>
+  80266a:	81 e3 00 1c 00 00    	and    $0x1c00,%ebx
+  802670:	0b 1d ce 9d 0c 00    	or     0xc9dce(%rip),%ebx        # 8cc444 <_dl_x86_cpu_features+0xe4>
+  802676:	66 0f 6e c8          	movd   %eax,%xmm1
+  80267a:	8b 05 98 9d 0c 00    	mov    0xc9d98(%rip),%eax        # 8cc418 <_dl_x86_cpu_features+0xb8>
+  802680:	89 1d be 9d 0c 00    	mov    %ebx,0xc9dbe(%rip)        # 8cc444 <_dl_x86_cpu_features+0xe4>
+  802686:	66 0f 62 c1          	punpckldq %xmm1,%xmm0
+  80268a:	66 0f d6 05 3a 9d 0c 	movq   %xmm0,0xc9d3a(%rip)        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  802691:	00 
+  802692:	25 00 02 00 00       	and    $0x200,%eax
+  802697:	09 05 8b 9d 0c 00    	or     %eax,0xc9d8b(%rip)        # 8cc428 <_dl_x86_cpu_features+0xc8>
+  80269d:	8b 05 d5 9d 0c 00    	mov    0xc9dd5(%rip),%eax        # 8cc478 <_dl_x86_cpu_features+0x118>
+  8026a3:	83 e0 10             	and    $0x10,%eax
+  8026a6:	09 05 dc 9d 0c 00    	or     %eax,0xc9ddc(%rip)        # 8cc488 <_dl_x86_cpu_features+0x128>
+  8026ac:	41 f7 c4 00 08 00 00 	test   $0x800,%r12d
+  8026b3:	0f 45 f2             	cmovne %edx,%esi
+  8026b6:	81 e5 10 48 11 00    	and    $0x114810,%ebp
+  8026bc:	41 81 e3 b1 01 40 1a 	and    $0x1a4001b1,%r11d
+  8026c3:	0b 2d e7 9c 0c 00    	or     0xc9ce7(%rip),%ebp        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  8026c9:	44 0b 1d dc 9c 0c 00 	or     0xc9cdc(%rip),%r11d        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  8026d0:	89 2d da 9c 0c 00    	mov    %ebp,0xc9cda(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  8026d6:	89 35 cc 9c 0c 00    	mov    %esi,0xc9ccc(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  8026dc:	44 89 1d c9 9c 0c 00 	mov    %r11d,0xc9cc9(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  8026e3:	85 c9                	test   %ecx,%ecx
+  8026e5:	74 4d                	je     802734 <update_active.constprop.0+0x1a4>
+  8026e7:	31 c9                	xor    %ecx,%ecx
+  8026e9:	0f 01 d0             	xgetbv 
+  8026ec:	89 c2                	mov    %eax,%edx
+  8026ee:	83 e2 06             	and    $0x6,%edx
+  8026f1:	83 fa 06             	cmp    $0x6,%edx
+  8026f4:	0f 84 80 01 00 00    	je     80287a <update_active.constprop.0+0x2ea>
+  8026fa:	25 00 00 06 00       	and    $0x60000,%eax
+  8026ff:	3d 00 00 06 00       	cmp    $0x60000,%eax
+  802704:	0f 84 3c 02 00 00    	je     802946 <update_active.constprop.0+0x3b6>
+  80270a:	81 0d 78 9c 0c 00 00 	orl    $0x4000000,0xc9c78(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  802711:	00 00 04 
+  802714:	8b 35 ba 9c 0c 00    	mov    0xc9cba(%rip),%esi        # 8cc3d4 <_dl_x86_cpu_features+0x74>
+  80271a:	89 f5                	mov    %esi,%ebp
+  80271c:	83 e5 17             	and    $0x17,%ebp
+  80271f:	0b 2d bf 9c 0c 00    	or     0xc9cbf(%rip),%ebp        # 8cc3e4 <_dl_x86_cpu_features+0x84>
+  802725:	83 3d 38 9c 0c 00 0c 	cmpl   $0xc,0xc9c38(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  80272c:	89 2d b2 9c 0c 00    	mov    %ebp,0xc9cb2(%rip)        # 8cc3e4 <_dl_x86_cpu_features+0x84>
+  802732:	7f 67                	jg     80279b <update_active.constprop.0+0x20b>
+  802734:	8b 44 24 8c          	mov    -0x74(%rsp),%eax
+  802738:	85 c0                	test   %eax,%eax
+  80273a:	74 07                	je     802743 <update_active.constprop.0+0x1b3>
+  80273c:	83 0d 69 9c 0c 00 08 	orl    $0x8,0xc9c69(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  802743:	8b 05 0f 9d 0c 00    	mov    0xc9d0f(%rip),%eax        # 8cc458 <_dl_x86_cpu_features+0xf8>
+  802749:	a8 01                	test   $0x1,%al
+  80274b:	74 20                	je     80276d <update_active.constprop.0+0x1dd>
+  80274d:	83 e0 04             	and    $0x4,%eax
+  802750:	0b 05 12 9d 0c 00    	or     0xc9d12(%rip),%eax        # 8cc468 <_dl_x86_cpu_features+0x108>
+  802756:	41 81 e0 00 00 80 00 	and    $0x800000,%r8d
+  80275d:	44 09 05 48 9c 0c 00 	or     %r8d,0xc9c48(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  802764:	83 c8 01             	or     $0x1,%eax
+  802767:	89 05 fb 9c 0c 00    	mov    %eax,0xc9cfb(%rip)        # 8cc468 <_dl_x86_cpu_features+0x108>
+  80276d:	89 fa                	mov    %edi,%edx
+  80276f:	31 c0                	xor    %eax,%eax
+  802771:	81 e2 00 81 00 00    	and    $0x8100,%edx
+  802777:	81 fa 00 81 00 00    	cmp    $0x8100,%edx
+  80277d:	0f 84 d2 00 00 00    	je     802855 <update_active.constprop.0+0x2c5>
+  802783:	89 05 0f 9d 0c 00    	mov    %eax,0xc9d0f(%rip)        # 8cc498 <_dl_x86_cpu_features+0x138>
+  802789:	48 81 c4 a0 00 00 00 	add    $0xa0,%rsp
+  802790:	5b                   	pop    %rbx
+  802791:	5d                   	pop    %rbp
+  802792:	41 5c                	pop    %r12
+  802794:	41 5d                	pop    %r13
+  802796:	41 5e                	pop    %r14
+  802798:	41 5f                	pop    %r15
+  80279a:	c3                   	ret    
+  80279b:	b8 0d 00 00 00       	mov    $0xd,%eax
+  8027a0:	31 c9                	xor    %ecx,%ecx
+  8027a2:	0f a2                	cpuid  
+  8027a4:	85 db                	test   %ebx,%ebx
+  8027a6:	74 8c                	je     802734 <update_active.constprop.0+0x1a4>
+  8027a8:	83 c3 7f             	add    $0x7f,%ebx
+  8027ab:	83 e3 c0             	and    $0xffffffc0,%ebx
+  8027ae:	40 80 e6 02          	and    $0x2,%sil
+  8027b2:	89 d8                	mov    %ebx,%eax
+  8027b4:	89 1d ee 9c 0c 00    	mov    %ebx,0xc9cee(%rip)        # 8cc4a8 <_dl_x86_cpu_features+0x148>
+  8027ba:	48 89 05 df 9c 0c 00 	mov    %rax,0xc9cdf(%rip)        # 8cc4a0 <_dl_x86_cpu_features+0x140>
+  8027c1:	0f 84 6d ff ff ff    	je     802734 <update_active.constprop.0+0x1a4>
+  8027c7:	4c 8d 4c 24 1c       	lea    0x1c(%rsp),%r9
+  8027cc:	4c 8d 54 24 a0       	lea    -0x60(%rsp),%r10
+  8027d1:	be 02 00 00 00       	mov    $0x2,%esi
+  8027d6:	c7 44 24 a0 40 02 00 	movl   $0x240,-0x60(%rsp)
+  8027dd:	00 
+  8027de:	41 bb 03 00 00 00    	mov    $0x3,%r11d
+  8027e4:	41 bc ee 00 00 00    	mov    $0xee,%r12d
+  8027ea:	41 bd 0d 00 00 00    	mov    $0xd,%r13d
+  8027f0:	eb 44                	jmp    802836 <update_active.constprop.0+0x2a6>
+  8027f2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  8027f8:	44 89 e8             	mov    %r13d,%eax
+  8027fb:	89 f1                	mov    %esi,%ecx
+  8027fd:	0f a2                	cpuid  
+  8027ff:	41 89 41 04          	mov    %eax,0x4(%r9)
+  802803:	83 fe 02             	cmp    $0x2,%esi
+  802806:	74 1f                	je     802827 <update_active.constprop.0+0x297>
+  802808:	41 8b 01             	mov    (%r9),%eax
+  80280b:	41 03 42 fc          	add    -0x4(%r10),%eax
+  80280f:	83 e1 02             	and    $0x2,%ecx
+  802812:	74 06                	je     80281a <update_active.constprop.0+0x28a>
+  802814:	83 c0 3f             	add    $0x3f,%eax
+  802817:	83 e0 c0             	and    $0xffffffc0,%eax
+  80281a:	41 89 02             	mov    %eax,(%r10)
+  80281d:	41 83 fb 20          	cmp    $0x20,%r11d
+  802821:	0f 84 32 01 00 00    	je     802959 <update_active.constprop.0+0x3c9>
+  802827:	83 c6 01             	add    $0x1,%esi
+  80282a:	41 83 c3 01          	add    $0x1,%r11d
+  80282e:	49 83 c1 04          	add    $0x4,%r9
+  802832:	49 83 c2 04          	add    $0x4,%r10
+  802836:	41 0f a3 f4          	bt     %esi,%r12d
+  80283a:	72 bc                	jb     8027f8 <update_active.constprop.0+0x268>
+  80283c:	41 c7 41 04 00 00 00 	movl   $0x0,0x4(%r9)
+  802843:	00 
+  802844:	83 fe 02             	cmp    $0x2,%esi
+  802847:	74 de                	je     802827 <update_active.constprop.0+0x297>
+  802849:	41 8b 01             	mov    (%r9),%eax
+  80284c:	41 03 42 fc          	add    -0x4(%r10),%eax
+  802850:	41 89 02             	mov    %eax,(%r10)
+  802853:	eb c8                	jmp    80281d <update_active.constprop.0+0x28d>
+  802855:	44 89 f0             	mov    %r14d,%eax
+  802858:	83 e0 01             	and    $0x1,%eax
+  80285b:	0f 84 22 ff ff ff    	je     802783 <update_active.constprop.0+0x1f3>
+  802861:	81 e7 00 00 80 07    	and    $0x7800000,%edi
+  802867:	81 ff 00 00 80 07    	cmp    $0x7800000,%edi
+  80286d:	0f 84 12 01 00 00    	je     802985 <update_active.constprop.0+0x3f5>
+  802873:	31 c0                	xor    %eax,%eax
+  802875:	e9 09 ff ff ff       	jmp    802783 <update_active.constprop.0+0x1f3>
+  80287a:	41 f7 c1 00 00 00 10 	test   $0x10000000,%r9d
+  802881:	74 56                	je     8028d9 <update_active.constprop.0+0x349>
+  802883:	41 81 ca 00 00 00 10 	or     $0x10000000,%r10d
+  80288a:	41 f6 c5 20          	test   $0x20,%r13b
+  80288e:	0f 85 8a 01 00 00    	jne    802a1e <update_active.constprop.0+0x48e>
+  802894:	44 89 fa             	mov    %r15d,%edx
+  802897:	41 81 e1 00 10 00 20 	and    $0x20001000,%r9d
+  80289e:	83 e2 10             	and    $0x10,%edx
+  8028a1:	45 09 d1             	or     %r10d,%r9d
+  8028a4:	09 da                	or     %ebx,%edx
+  8028a6:	44 89 0d df 9a 0c 00 	mov    %r9d,0xc9adf(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  8028ad:	89 15 91 9b 0c 00    	mov    %edx,0xc9b91(%rip)        # 8cc444 <_dl_x86_cpu_features+0xe4>
+  8028b3:	44 89 c2             	mov    %r8d,%edx
+  8028b6:	81 e2 00 06 00 00    	and    $0x600,%edx
+  8028bc:	44 09 da             	or     %r11d,%edx
+  8028bf:	89 15 e7 9a 0c 00    	mov    %edx,0xc9ae7(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  8028c5:	8b 54 24 90          	mov    -0x70(%rsp),%edx
+  8028c9:	81 e2 00 08 00 00    	and    $0x800,%edx
+  8028cf:	0b 54 24 94          	or     -0x6c(%rsp),%edx
+  8028d3:	89 15 f3 9a 0c 00    	mov    %edx,0xc9af3(%rip)        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  8028d9:	89 c2                	mov    %eax,%edx
+  8028db:	81 e2 e0 00 00 00    	and    $0xe0,%edx
+  8028e1:	81 fa e0 00 00 00    	cmp    $0xe0,%edx
+  8028e7:	0f 85 0d fe ff ff    	jne    8026fa <update_active.constprop.0+0x16a>
+  8028ed:	41 f7 c5 00 00 01 00 	test   $0x10000,%r13d
+  8028f4:	0f 84 00 fe ff ff    	je     8026fa <update_active.constprop.0+0x16a>
+  8028fa:	44 89 c2             	mov    %r8d,%edx
+  8028fd:	41 81 e5 00 00 22 dc 	and    $0xdc220000,%r13d
+  802904:	41 83 e7 20          	and    $0x20,%r15d
+  802908:	44 0b 2d 99 9a 0c 00 	or     0xc9a99(%rip),%r13d        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  80290f:	81 e2 42 58 00 00    	and    $0x5842,%edx
+  802915:	09 15 91 9a 0c 00    	or     %edx,0xc9a91(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  80291b:	44 89 e2             	mov    %r12d,%edx
+  80291e:	41 81 cd 00 00 01 00 	or     $0x10000,%r13d
+  802925:	81 e2 0c 01 80 00    	and    $0x80010c,%edx
+  80292b:	44 09 3d 12 9b 0c 00 	or     %r15d,0xc9b12(%rip)        # 8cc444 <_dl_x86_cpu_features+0xe4>
+  802932:	09 ea                	or     %ebp,%edx
+  802934:	44 89 2d 6d 9a 0c 00 	mov    %r13d,0xc9a6d(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  80293b:	89 15 6f 9a 0c 00    	mov    %edx,0xc9a6f(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  802941:	e9 b4 fd ff ff       	jmp    8026fa <update_active.constprop.0+0x16a>
+  802946:	41 81 e4 00 00 40 03 	and    $0x3400000,%r12d
+  80294d:	44 09 25 5c 9a 0c 00 	or     %r12d,0xc9a5c(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  802954:	e9 b1 fd ff ff       	jmp    80270a <update_active.constprop.0+0x17a>
+  802959:	8b 84 24 94 00 00 00 	mov    0x94(%rsp),%eax
+  802960:	03 44 24 14          	add    0x14(%rsp),%eax
+  802964:	0f 84 ca fd ff ff    	je     802734 <update_active.constprop.0+0x1a4>
+  80296a:	83 c0 7f             	add    $0x7f,%eax
+  80296d:	83 cd 02             	or     $0x2,%ebp
+  802970:	83 e0 c0             	and    $0xffffffc0,%eax
+  802973:	89 2d 6b 9a 0c 00    	mov    %ebp,0xc9a6b(%rip)        # 8cc3e4 <_dl_x86_cpu_features+0x84>
+  802979:	48 89 05 20 9b 0c 00 	mov    %rax,0xc9b20(%rip)        # 8cc4a0 <_dl_x86_cpu_features+0x140>
+  802980:	e9 af fd ff ff       	jmp    802734 <update_active.constprop.0+0x1a4>
+  802985:	8b 15 01 9a 0c 00    	mov    0xc9a01(%rip),%edx        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  80298b:	f6 c6 20             	test   $0x20,%dh
+  80298e:	0f 84 ef fd ff ff    	je     802783 <update_active.constprop.0+0x1f3>
+  802994:	8b 0d 32 9a 0c 00    	mov    0xc9a32(%rip),%ecx        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  80299a:	89 ce                	mov    %ecx,%esi
+  80299c:	83 e6 01             	and    $0x1,%esi
+  80299f:	0f 84 de fd ff ff    	je     802783 <update_active.constprop.0+0x1f3>
+  8029a5:	89 d7                	mov    %edx,%edi
+  8029a7:	89 f0                	mov    %esi,%eax
+  8029a9:	81 e7 01 02 98 00    	and    $0x980201,%edi
+  8029af:	81 ff 01 02 98 00    	cmp    $0x980201,%edi
+  8029b5:	0f 85 c8 fd ff ff    	jne    802783 <update_active.constprop.0+0x1f3>
+  8029bb:	f7 c2 00 00 00 10    	test   $0x10000000,%edx
+  8029c1:	74 73                	je     802a36 <update_active.constprop.0+0x4a6>
+  8029c3:	8b 35 df 99 0c 00    	mov    0xc99df(%rip),%esi        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  8029c9:	40 f6 c6 20          	test   $0x20,%sil
+  8029cd:	74 67                	je     802a36 <update_active.constprop.0+0x4a6>
+  8029cf:	89 d7                	mov    %edx,%edi
+  8029d1:	b8 03 00 00 00       	mov    $0x3,%eax
+  8029d6:	81 e7 00 10 00 20    	and    $0x20001000,%edi
+  8029dc:	81 ff 00 10 00 20    	cmp    $0x20001000,%edi
+  8029e2:	0f 85 9b fd ff ff    	jne    802783 <update_active.constprop.0+0x1f3>
+  8029e8:	80 e1 20             	and    $0x20,%cl
+  8029eb:	74 49                	je     802a36 <update_active.constprop.0+0x4a6>
+  8029ed:	81 e2 00 00 40 00    	and    $0x400000,%edx
+  8029f3:	74 41                	je     802a36 <update_active.constprop.0+0x4a6>
+  8029f5:	89 f2                	mov    %esi,%edx
+  8029f7:	b8 07 00 00 00       	mov    $0x7,%eax
+  8029fc:	81 e2 00 00 03 50    	and    $0x50030000,%edx
+  802a02:	81 fa 00 00 03 50    	cmp    $0x50030000,%edx
+  802a08:	0f 85 75 fd ff ff    	jne    802783 <update_active.constprop.0+0x1f3>
+  802a0e:	89 f0                	mov    %esi,%eax
+  802a10:	c1 f8 1f             	sar    $0x1f,%eax
+  802a13:	83 e0 08             	and    $0x8,%eax
+  802a16:	83 c0 07             	add    $0x7,%eax
+  802a19:	e9 65 fd ff ff       	jmp    802783 <update_active.constprop.0+0x1f3>
+  802a1e:	81 0d 6c 9a 0c 00 00 	orl    $0x200,0xc9a6c(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  802a25:	02 00 00 
+  802a28:	83 ce 20             	or     $0x20,%esi
+  802a2b:	89 35 77 99 0c 00    	mov    %esi,0xc9977(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  802a31:	e9 5e fe ff ff       	jmp    802894 <update_active.constprop.0+0x304>
+  802a36:	b8 03 00 00 00       	mov    $0x3,%eax
+  802a3b:	e9 43 fd ff ff       	jmp    802783 <update_active.constprop.0+0x1f3>
+
+0000000000802a40 <__libc_start_main>:
+  802a40:	f3 0f 1e fa          	endbr64 
+  802a44:	41 57                	push   %r15
+  802a46:	48 63 c6             	movslq %esi,%rax
+  802a49:	41 56                	push   %r14
+  802a4b:	41 55                	push   %r13
+  802a4d:	49 89 d5             	mov    %rdx,%r13
+  802a50:	41 54                	push   %r12
+  802a52:	49 89 c4             	mov    %rax,%r12
+  802a55:	55                   	push   %rbp
+  802a56:	53                   	push   %rbx
+  802a57:	48 81 ec e8 00 00 00 	sub    $0xe8,%rsp
+  802a5e:	48 89 7c 24 70       	mov    %rdi,0x70(%rsp)
+  802a63:	48 8d 7c c2 08       	lea    0x8(%rdx,%rax,8),%rdi
+  802a68:	48 8b 84 24 20 01 00 	mov    0x120(%rsp),%rax
+  802a6f:	00 
+  802a70:	4c 89 4c 24 78       	mov    %r9,0x78(%rsp)
+  802a75:	48 89 3d b4 97 0c 00 	mov    %rdi,0xc97b4(%rip)        # 8cc230 <__environ>
+  802a7c:	48 89 05 dd 1f 0c 00 	mov    %rax,0xc1fdd(%rip)        # 8c4a60 <__libc_stack_end>
+  802a83:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  802a88:	48 83 c7 08          	add    $0x8,%rdi
+  802a8c:	48 83 7f f8 00       	cmpq   $0x0,-0x8(%rdi)
+  802a91:	75 f5                	jne    802a88 <__libc_start_main+0x48>
+  802a93:	e8 08 90 04 00       	call   84baa0 <_dl_aux_init>
+  802a98:	48 83 3d 70 98 0c 00 	cmpq   $0x0,0xc9870(%rip)        # 8cc310 <_dl_phdr>
+  802a9f:	00 
+  802aa0:	0f 84 ef 07 00 00    	je     803295 <__libc_start_main+0x855>
+  802aa6:	e8 95 ac 04 00       	call   84d740 <__libc_init_secure>
+  802aab:	48 8b 3d 7e 97 0c 00 	mov    0xc977e(%rip),%rdi        # 8cc230 <__environ>
+  802ab2:	e8 49 88 04 00       	call   84b300 <__tunables_init>
+  802ab7:	31 c0                	xor    %eax,%eax
+  802ab9:	c7 84 24 98 00 00 00 	movl   $0x0,0x98(%rsp)
+  802ac0:	00 00 00 00 
+  802ac4:	c7 84 24 9c 00 00 00 	movl   $0x0,0x9c(%rsp)
+  802acb:	00 00 00 00 
+  802acf:	c7 84 24 a0 00 00 00 	movl   $0x0,0xa0(%rsp)
+  802ad6:	00 00 00 00 
+  802ada:	0f a2                	cpuid  
+  802adc:	89 05 82 98 0c 00    	mov    %eax,0xc9882(%rip)        # 8cc364 <_dl_x86_cpu_features+0x4>
+  802ae2:	81 fb 47 65 6e 75    	cmp    $0x756e6547,%ebx
+  802ae8:	0f 85 88 06 00 00    	jne    803176 <__libc_start_main+0x736>
+  802aee:	81 f9 6e 74 65 6c    	cmp    $0x6c65746e,%ecx
+  802af4:	0f 85 7c 06 00 00    	jne    803176 <__libc_start_main+0x736>
+  802afa:	81 fa 69 6e 65 49    	cmp    $0x49656e69,%edx
+  802b00:	0f 84 91 0f 00 00    	je     803a97 <__libc_start_main+0x1057>
+  802b06:	31 c9                	xor    %ecx,%ecx
+  802b08:	31 d2                	xor    %edx,%edx
+  802b0a:	31 f6                	xor    %esi,%esi
+  802b0c:	31 ff                	xor    %edi,%edi
+  802b0e:	e8 ed f0 ff ff       	call   801c00 <get_common_indices.constprop.0>
+  802b13:	48 8d ac 24 c0 00 00 	lea    0xc0(%rsp),%rbp
+  802b1a:	00 
+  802b1b:	4c 8d b4 24 b8 00 00 	lea    0xb8(%rsp),%r14
+  802b22:	00 
+  802b23:	e8 68 fa ff ff       	call   802590 <update_active.constprop.0>
+  802b28:	8b 8c 24 9c 00 00 00 	mov    0x9c(%rsp),%ecx
+  802b2f:	8b 84 24 a0 00 00 00 	mov    0xa0(%rsp),%eax
+  802b36:	41 ba 04 00 00 00    	mov    $0x4,%r10d
+  802b3c:	44 8b 9c 24 98 00 00 	mov    0x98(%rsp),%r11d
+  802b43:	00 
+  802b44:	8b 15 36 98 0c 00    	mov    0xc9836(%rip),%edx        # 8cc380 <_dl_x86_cpu_features+0x20>
+  802b4a:	f6 c6 01             	test   $0x1,%dh
+  802b4d:	74 07                	je     802b56 <__libc_start_main+0x116>
+  802b4f:	83 0d 3e 99 0c 00 40 	orl    $0x40,0xc993e(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  802b56:	80 e6 80             	and    $0x80,%dh
+  802b59:	74 0a                	je     802b65 <__libc_start_main+0x125>
+  802b5b:	81 0d 2f 99 0c 00 80 	orl    $0x80,0xc992f(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  802b62:	00 00 00 
+  802b65:	66 41 0f 6e c3       	movd   %r11d,%xmm0
+  802b6a:	66 0f 6e d9          	movd   %ecx,%xmm3
+  802b6e:	44 89 15 eb 97 0c 00 	mov    %r10d,0xc97eb(%rip)        # 8cc360 <_dl_x86_cpu_features>
+  802b75:	66 0f 62 c3          	punpckldq %xmm3,%xmm0
+  802b79:	89 05 f1 97 0c 00    	mov    %eax,0xc97f1(%rip)        # 8cc370 <_dl_x86_cpu_features+0x10>
+  802b7f:	48 c7 84 24 a8 00 00 	movq   $0xffffffffffffffff,0xa8(%rsp)
+  802b86:	00 ff ff ff ff 
+  802b8b:	c7 84 24 a4 00 00 00 	movl   $0x0,0xa4(%rsp)
+  802b92:	00 00 00 00 
+  802b96:	66 0f d6 05 ca 97 0c 	movq   %xmm0,0xc97ca(%rip)        # 8cc368 <_dl_x86_cpu_features+0x8>
+  802b9d:	00 
+  802b9e:	41 83 fa 01          	cmp    $0x1,%r10d
+  802ba2:	0f 84 44 0b 00 00    	je     8036ec <__libc_start_main+0xcac>
+  802ba8:	41 83 fa 03          	cmp    $0x3,%r10d
+  802bac:	0f 84 43 0c 00 00    	je     8037f5 <__libc_start_main+0xdb5>
+  802bb2:	41 83 fa 02          	cmp    $0x2,%r10d
+  802bb6:	0f 84 41 0d 00 00    	je     8038fd <__libc_start_main+0xebd>
+  802bbc:	48 c7 44 24 68 ff ff 	movq   $0xffffffffffffffff,0x68(%rsp)
+  802bc3:	ff ff 
+  802bc5:	49 83 cf ff          	or     $0xffffffffffffffff,%r15
+  802bc9:	49 83 c8 ff          	or     $0xffffffffffffffff,%r8
+  802bcd:	48 c7 44 24 60 ff ff 	movq   $0xffffffffffffffff,0x60(%rsp)
+  802bd4:	ff ff 
+  802bd6:	48 c7 44 24 58 ff ff 	movq   $0xffffffffffffffff,0x58(%rsp)
+  802bdd:	ff ff 
+  802bdf:	48 c7 44 24 50 ff ff 	movq   $0xffffffffffffffff,0x50(%rsp)
+  802be6:	ff ff 
+  802be8:	48 c7 44 24 48 ff ff 	movq   $0xffffffffffffffff,0x48(%rsp)
+  802bef:	ff ff 
+  802bf1:	48 c7 44 24 40 ff ff 	movq   $0xffffffffffffffff,0x40(%rsp)
+  802bf8:	ff ff 
+  802bfa:	48 c7 44 24 38 ff ff 	movq   $0xffffffffffffffff,0x38(%rsp)
+  802c01:	ff ff 
+  802c03:	48 c7 44 24 30 ff ff 	movq   $0xffffffffffffffff,0x30(%rsp)
+  802c0a:	ff ff 
+  802c0c:	48 c7 44 24 20 ff ff 	movq   $0xffffffffffffffff,0x20(%rsp)
+  802c13:	ff ff 
+  802c15:	48 c7 44 24 18 ff ff 	movq   $0xffffffffffffffff,0x18(%rsp)
+  802c1c:	ff ff 
+  802c1e:	48 c7 44 24 10 ff ff 	movq   $0xffffffffffffffff,0x10(%rsp)
+  802c25:	ff ff 
+  802c27:	48 c7 44 24 08 ff ff 	movq   $0xffffffffffffffff,0x8(%rsp)
+  802c2e:	ff ff 
+  802c30:	f3 0f 7e 44 24 10    	movq   0x10(%rsp),%xmm0
+  802c36:	48 8b 84 24 a8 00 00 	mov    0xa8(%rsp),%rax
+  802c3d:	00 
+  802c3e:	0f 16 44 24 18       	movhps 0x18(%rsp),%xmm0
+  802c43:	48 8d 04 40          	lea    (%rax,%rax,2),%rax
+  802c47:	0f 11 05 92 98 0c 00 	movups %xmm0,0xc9892(%rip)        # 8cc4e0 <_dl_x86_cpu_features+0x180>
+  802c4e:	f3 0f 7e 44 24 20    	movq   0x20(%rsp),%xmm0
+  802c54:	48 85 c0             	test   %rax,%rax
+  802c57:	0f 16 44 24 30       	movhps 0x30(%rsp),%xmm0
+  802c5c:	0f 11 05 8d 98 0c 00 	movups %xmm0,0xc988d(%rip)        # 8cc4f0 <_dl_x86_cpu_features+0x190>
+  802c63:	f3 0f 7e 44 24 38    	movq   0x38(%rsp),%xmm0
+  802c69:	0f 16 44 24 40       	movhps 0x40(%rsp),%xmm0
+  802c6e:	0f 11 05 8b 98 0c 00 	movups %xmm0,0xc988b(%rip)        # 8cc500 <_dl_x86_cpu_features+0x1a0>
+  802c75:	f3 0f 7e 44 24 48    	movq   0x48(%rsp),%xmm0
+  802c7b:	0f 16 44 24 50       	movhps 0x50(%rsp),%xmm0
+  802c80:	0f 11 05 89 98 0c 00 	movups %xmm0,0xc9889(%rip)        # 8cc510 <_dl_x86_cpu_features+0x1b0>
+  802c87:	66 49 0f 6e c7       	movq   %r15,%xmm0
+  802c8c:	4c 8d 78 03          	lea    0x3(%rax),%r15
+  802c90:	4c 0f 49 f8          	cmovns %rax,%r15
+  802c94:	0f 16 44 24 58       	movhps 0x58(%rsp),%xmm0
+  802c99:	48 b8 ff ff ff ff ff 	movabs $0xfffffffffffffff,%rax
+  802ca0:	ff ff 0f 
+  802ca3:	0f 11 05 76 98 0c 00 	movups %xmm0,0xc9876(%rip)        # 8cc520 <_dl_x86_cpu_features+0x1c0>
+  802caa:	f3 0f 7e 44 24 60    	movq   0x60(%rsp),%xmm0
+  802cb0:	49 c1 ff 02          	sar    $0x2,%r15
+  802cb4:	49 39 c7             	cmp    %rax,%r15
+  802cb7:	0f 16 44 24 68       	movhps 0x68(%rsp),%xmm0
+  802cbc:	4c 0f 47 f8          	cmova  %rax,%r15
+  802cc0:	b8 40 40 00 00       	mov    $0x4040,%eax
+  802cc5:	0f 11 05 64 98 0c 00 	movups %xmm0,0xc9864(%rip)        # 8cc530 <_dl_x86_cpu_features+0x1d0>
+  802ccc:	49 39 c7             	cmp    %rax,%r15
+  802ccf:	4c 0f 42 f8          	cmovb  %rax,%r15
+  802cd3:	8b 05 bb 97 0c 00    	mov    0xc97bb(%rip),%eax        # 8cc494 <_dl_x86_cpu_features+0x134>
+  802cd9:	f6 05 ca 96 0c 00 01 	testb  $0x1,0xc96ca(%rip)        # 8cc3aa <_dl_x86_cpu_features+0x4a>
+  802ce0:	74 09                	je     802ceb <__libc_start_main+0x2ab>
+  802ce2:	f6 c4 10             	test   $0x10,%ah
+  802ce5:	0f 84 c2 09 00 00    	je     8036ad <__libc_start_main+0xc6d>
+  802ceb:	25 00 02 00 00       	and    $0x200,%eax
+  802cf0:	83 f8 01             	cmp    $0x1,%eax
+  802cf3:	19 db                	sbb    %ebx,%ebx
+  802cf5:	81 e3 00 e8 ff ff    	and    $0xffffe800,%ebx
+  802cfb:	81 c3 00 20 00 00    	add    $0x2000,%ebx
+  802d01:	83 f8 01             	cmp    $0x1,%eax
+  802d04:	45 19 c9             	sbb    %r9d,%r9d
+  802d07:	41 83 e1 80          	and    $0xffffff80,%r9d
+  802d0b:	41 81 c1 00 01 00 00 	add    $0x100,%r9d
+  802d12:	f6 05 97 96 0c 00 10 	testb  $0x10,0xc9697(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  802d19:	ba 40 08 00 00       	mov    $0x840,%edx
+  802d1e:	48 89 ee             	mov    %rbp,%rsi
+  802d21:	bf 1c 00 00 00       	mov    $0x1c,%edi
+  802d26:	0f 45 da             	cmovne %edx,%ebx
+  802d29:	41 83 fa 02          	cmp    $0x2,%r10d
+  802d2d:	44 89 4c 24 18       	mov    %r9d,0x18(%rsp)
+  802d32:	4d 0f 45 c7          	cmovne %r15,%r8
+  802d36:	31 d2                	xor    %edx,%edx
+  802d38:	4c 89 44 24 10       	mov    %r8,0x10(%rsp)
+  802d3d:	e8 be 89 04 00       	call   84b700 <__tunable_get_val>
+  802d42:	48 8b 94 24 c0 00 00 	mov    0xc0(%rsp),%rdx
+  802d49:	00 
+  802d4a:	48 89 ee             	mov    %rbp,%rsi
+  802d4d:	bf 04 00 00 00       	mov    $0x4,%edi
+  802d52:	48 85 d2             	test   %rdx,%rdx
+  802d55:	48 0f 44 54 24 08    	cmove  0x8(%rsp),%rdx
+  802d5b:	48 89 54 24 08       	mov    %rdx,0x8(%rsp)
+  802d60:	31 d2                	xor    %edx,%edx
+  802d62:	e8 99 89 04 00       	call   84b700 <__tunable_get_val>
+  802d67:	48 8b 94 24 c0 00 00 	mov    0xc0(%rsp),%rdx
+  802d6e:	00 
+  802d6f:	44 8b 4c 24 18       	mov    0x18(%rsp),%r9d
+  802d74:	48 85 d2             	test   %rdx,%rdx
+  802d77:	74 08                	je     802d81 <__libc_start_main+0x341>
+  802d79:	48 89 94 24 a8 00 00 	mov    %rdx,0xa8(%rsp)
+  802d80:	00 
+  802d81:	31 d2                	xor    %edx,%edx
+  802d83:	48 89 ee             	mov    %rbp,%rsi
+  802d86:	bf 10 00 00 00       	mov    $0x10,%edi
+  802d8b:	44 89 4c 24 18       	mov    %r9d,0x18(%rsp)
+  802d90:	e8 6b 89 04 00       	call   84b700 <__tunable_get_val>
+  802d95:	4c 8b 84 24 c0 00 00 	mov    0xc0(%rsp),%r8
+  802d9c:	00 
+  802d9d:	bf 0a 00 00 00       	mov    $0xa,%edi
+  802da2:	48 ba be bf ff ff ff 	movabs $0xfffffffffffbfbe,%rdx
+  802da9:	ff ff 0f 
+  802dac:	49 8d b0 bf bf ff ff 	lea    -0x4041(%r8),%rsi
+  802db3:	48 39 d6             	cmp    %rdx,%rsi
+  802db6:	48 89 ee             	mov    %rbp,%rsi
+  802db9:	4d 0f 47 c7          	cmova  %r15,%r8
+  802dbd:	31 d2                	xor    %edx,%edx
+  802dbf:	4c 8d bc 24 b0 00 00 	lea    0xb0(%rsp),%r15
+  802dc6:	00 
+  802dc7:	4c 89 44 24 40       	mov    %r8,0x40(%rsp)
+  802dcc:	e8 2f 89 04 00       	call   84b700 <__tunable_get_val>
+  802dd1:	44 8b 4c 24 18       	mov    0x18(%rsp),%r9d
+  802dd6:	48 89 ee             	mov    %rbp,%rsi
+  802dd9:	48 8b 94 24 c0 00 00 	mov    0xc0(%rsp),%rdx
+  802de0:	00 
+  802de1:	bf 0f 00 00 00       	mov    $0xf,%edi
+  802de6:	4c 39 ca             	cmp    %r9,%rdx
+  802de9:	4c 89 4c 24 38       	mov    %r9,0x38(%rsp)
+  802dee:	0f 4f da             	cmovg  %edx,%ebx
+  802df1:	31 d2                	xor    %edx,%edx
+  802df3:	e8 08 89 04 00       	call   84b700 <__tunable_get_val>
+  802df8:	48 8b 44 24 08       	mov    0x8(%rsp),%rax
+  802dfd:	48 89 e9             	mov    %rbp,%rcx
+  802e00:	4c 89 f2             	mov    %r14,%rdx
+  802e03:	4c 8b 94 24 c0 00 00 	mov    0xc0(%rsp),%r10
+  802e0a:	00 
+  802e0b:	f3 0f 7e 54 24 10    	movq   0x10(%rsp),%xmm2
+  802e11:	4c 89 fe             	mov    %r15,%rsi
+  802e14:	bf 1c 00 00 00       	mov    $0x1c,%edi
+  802e19:	48 89 84 24 b0 00 00 	mov    %rax,0xb0(%rsp)
+  802e20:	00 
+  802e21:	66 49 0f 6e e2       	movq   %r10,%xmm4
+  802e26:	4c 89 54 24 30       	mov    %r10,0x30(%rsp)
+  802e2b:	48 c7 84 24 c0 00 00 	movq   $0xffffffffffffffff,0xc0(%rsp)
+  802e32:	00 ff ff ff ff 
+  802e37:	66 0f 6c d4          	punpcklqdq %xmm4,%xmm2
+  802e3b:	0f 29 54 24 20       	movaps %xmm2,0x20(%rsp)
+  802e40:	48 c7 84 24 b8 00 00 	movq   $0x0,0xb8(%rsp)
+  802e47:	00 00 00 00 00 
+  802e4c:	e8 5f 83 04 00       	call   84b1b0 <__tunable_set_val>
+  802e51:	48 89 e9             	mov    %rbp,%rcx
+  802e54:	4c 89 f2             	mov    %r14,%rdx
+  802e57:	4c 89 fe             	mov    %r15,%rsi
+  802e5a:	48 8b 84 24 a8 00 00 	mov    0xa8(%rsp),%rax
+  802e61:	00 
+  802e62:	bf 04 00 00 00       	mov    $0x4,%edi
+  802e67:	48 c7 84 24 c0 00 00 	movq   $0xffffffffffffffff,0xc0(%rsp)
+  802e6e:	00 ff ff ff ff 
+  802e73:	48 c7 84 24 b8 00 00 	movq   $0x0,0xb8(%rsp)
+  802e7a:	00 00 00 00 00 
+  802e7f:	48 89 84 24 b0 00 00 	mov    %rax,0xb0(%rsp)
+  802e86:	00 
+  802e87:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  802e8c:	e8 1f 83 04 00       	call   84b1b0 <__tunable_set_val>
+  802e91:	4c 8b 44 24 40       	mov    0x40(%rsp),%r8
+  802e96:	4c 89 f2             	mov    %r14,%rdx
+  802e99:	4c 89 fe             	mov    %r15,%rsi
+  802e9c:	48 b9 ff ff ff ff ff 	movabs $0xfffffffffffffff,%rcx
+  802ea3:	ff ff 0f 
+  802ea6:	bf 10 00 00 00       	mov    $0x10,%edi
+  802eab:	48 c7 84 24 b8 00 00 	movq   $0x4040,0xb8(%rsp)
+  802eb2:	00 40 40 00 00 
+  802eb7:	48 89 8c 24 c0 00 00 	mov    %rcx,0xc0(%rsp)
+  802ebe:	00 
+  802ebf:	48 89 e9             	mov    %rbp,%rcx
+  802ec2:	4c 89 84 24 b0 00 00 	mov    %r8,0xb0(%rsp)
+  802ec9:	00 
+  802eca:	4c 89 44 24 10       	mov    %r8,0x10(%rsp)
+  802ecf:	e8 dc 82 04 00       	call   84b1b0 <__tunable_set_val>
+  802ed4:	4c 8b 4c 24 38       	mov    0x38(%rsp),%r9
+  802ed9:	89 d9                	mov    %ebx,%ecx
+  802edb:	4c 89 f2             	mov    %r14,%rdx
+  802ede:	48 89 8c 24 b0 00 00 	mov    %rcx,0xb0(%rsp)
+  802ee5:	00 
+  802ee6:	4c 89 fe             	mov    %r15,%rsi
+  802ee9:	48 89 e9             	mov    %rbp,%rcx
+  802eec:	bf 0a 00 00 00       	mov    $0xa,%edi
+  802ef1:	4c 89 8c 24 b8 00 00 	mov    %r9,0xb8(%rsp)
+  802ef8:	00 
+  802ef9:	48 c7 84 24 c0 00 00 	movq   $0xffffffffffffffff,0xc0(%rsp)
+  802f00:	00 ff ff ff ff 
+  802f05:	e8 a6 82 04 00       	call   84b1b0 <__tunable_set_val>
+  802f0a:	4c 8b 54 24 30       	mov    0x30(%rsp),%r10
+  802f0f:	48 89 e9             	mov    %rbp,%rcx
+  802f12:	4c 89 f2             	mov    %r14,%rdx
+  802f15:	4c 89 fe             	mov    %r15,%rsi
+  802f18:	bf 0f 00 00 00       	mov    $0xf,%edi
+  802f1d:	48 c7 84 24 c0 00 00 	movq   $0xffffffffffffffff,0xc0(%rsp)
+  802f24:	00 ff ff ff ff 
+  802f29:	4c 89 94 24 b0 00 00 	mov    %r10,0xb0(%rsp)
+  802f30:	00 
+  802f31:	48 c7 84 24 b8 00 00 	movq   $0x1,0xb8(%rsp)
+  802f38:	00 01 00 00 00 
+  802f3d:	e8 6e 82 04 00       	call   84b1b0 <__tunable_set_val>
+  802f42:	48 8b 44 24 18       	mov    0x18(%rsp),%rax
+  802f47:	4c 8b 44 24 10       	mov    0x10(%rsp),%r8
+  802f4c:	48 8d 15 fd 9a 04 00 	lea    0x49afd(%rip),%rdx        # 84ca50 <_dl_tunable_set_hwcaps>
+  802f53:	f3 0f 7e 44 24 08    	movq   0x8(%rsp),%xmm0
+  802f59:	66 0f 6f 54 24 20    	movdqa 0x20(%rsp),%xmm2
+  802f5f:	48 89 ee             	mov    %rbp,%rsi
+  802f62:	bf 18 00 00 00       	mov    $0x18,%edi
+  802f67:	66 48 0f 6e e8       	movq   %rax,%xmm5
+  802f6c:	66 49 0f 6e c8       	movq   %r8,%xmm1
+  802f71:	66 0f 6c c5          	punpcklqdq %xmm5,%xmm0
+  802f75:	0f 11 15 54 95 0c 00 	movups %xmm2,0xc9554(%rip)        # 8cc4d0 <_dl_x86_cpu_features+0x170>
+  802f7c:	0f 11 05 2d 95 0c 00 	movups %xmm0,0xc952d(%rip)        # 8cc4b0 <_dl_x86_cpu_features+0x150>
+  802f83:	66 0f 6e c3          	movd   %ebx,%xmm0
+  802f87:	66 0f 6c c8          	punpcklqdq %xmm0,%xmm1
+  802f8b:	0f 11 0d 2e 95 0c 00 	movups %xmm1,0xc952e(%rip)        # 8cc4c0 <_dl_x86_cpu_features+0x160>
+  802f92:	e8 69 87 04 00       	call   84b700 <__tunable_get_val>
+  802f97:	8b 05 ef 93 0c 00    	mov    0xc93ef(%rip),%eax        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  802f9d:	a9 00 00 00 08       	test   $0x8000000,%eax
+  802fa2:	0f 84 70 01 00 00    	je     803118 <__libc_start_main+0x6d8>
+  802fa8:	8b 15 36 94 0c 00    	mov    0xc9436(%rip),%edx        # 8cc3e4 <_dl_x86_cpu_features+0x84>
+  802fae:	89 c1                	mov    %eax,%ecx
+  802fb0:	81 e1 00 00 00 04    	and    $0x4000000,%ecx
+  802fb6:	83 e2 02             	and    $0x2,%edx
+  802fb9:	09 ca                	or     %ecx,%edx
+  802fbb:	0f 84 63 01 00 00    	je     803124 <__libc_start_main+0x6e4>
+  802fc1:	83 3d 98 93 0c 00 01 	cmpl   $0x1,0xc9398(%rip)        # 8cc360 <_dl_x86_cpu_features>
+  802fc8:	48 c7 05 2d 93 0c 00 	movq   $0x2,0xc932d(%rip)        # 8cc300 <_dl_hwcap>
+  802fcf:	02 00 00 00 
+  802fd3:	0f 84 8e 04 00 00    	je     803467 <__libc_start_main+0xa27>
+  802fd9:	48 89 ee             	mov    %rbp,%rsi
+  802fdc:	48 8d 15 2d a5 04 00 	lea    0x4a52d(%rip),%rdx        # 84d510 <_dl_tunable_set_x86_ibt>
+  802fe3:	bf 17 00 00 00       	mov    $0x17,%edi
+  802fe8:	e8 13 87 04 00       	call   84b700 <__tunable_get_val>
+  802fed:	48 89 ee             	mov    %rbp,%rsi
+  802ff0:	bf 11 00 00 00       	mov    $0x11,%edi
+  802ff5:	48 8d 15 a4 a5 04 00 	lea    0x4a5a4(%rip),%rdx        # 84d5a0 <_dl_tunable_set_x86_shstk>
+  802ffc:	e8 ff 86 04 00       	call   84b700 <__tunable_get_val>
+  803001:	48 89 ee             	mov    %rbp,%rsi
+  803004:	bf 01 30 00 00       	mov    $0x3001,%edi
+  803009:	b8 9e 00 00 00       	mov    $0x9e,%eax
+  80300e:	0f 05                	syscall 
+  803010:	31 d2                	xor    %edx,%edx
+  803012:	48 85 c0             	test   %rax,%rax
+  803015:	0f 84 be 02 00 00    	je     8032d9 <__libc_start_main+0x899>
+  80301b:	81 25 8b 93 0c 00 ff 	andl   $0xffefffff,0xc938b(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  803022:	ff ef ff 
+  803025:	f6 c2 02             	test   $0x2,%dl
+  803028:	0f 84 94 02 00 00    	je     8032c2 <__libc_start_main+0x882>
+  80302e:	89 15 10 95 0c 00    	mov    %edx,0xc9510(%rip)        # 8cc544 <_dl_x86_feature_1>
+  803034:	80 e2 03             	and    $0x3,%dl
+  803037:	0f 85 fc 05 00 00    	jne    803639 <__libc_start_main+0xbf9>
+  80303d:	48 8b 05 6c 94 0c 00 	mov    0xc946c(%rip),%rax        # 8cc4b0 <_dl_x86_cpu_features+0x150>
+  803044:	48 25 00 ff ff ff    	and    $0xffffffffffffff00,%rax
+  80304a:	7e 14                	jle    803060 <__libc_start_main+0x620>
+  80304c:	48 89 c2             	mov    %rax,%rdx
+  80304f:	48 89 05 ba 20 0c 00 	mov    %rax,0xc20ba(%rip)        # 8c5110 <__x86_data_cache_size>
+  803056:	48 d1 fa             	sar    %rdx
+  803059:	48 89 15 b8 20 0c 00 	mov    %rdx,0xc20b8(%rip)        # 8c5118 <__x86_data_cache_size_half>
+  803060:	48 8b 05 51 94 0c 00 	mov    0xc9451(%rip),%rax        # 8cc4b8 <_dl_x86_cpu_features+0x158>
+  803067:	48 25 00 ff ff ff    	and    $0xffffffffffffff00,%rax
+  80306d:	7e 14                	jle    803083 <__libc_start_main+0x643>
+  80306f:	48 89 c2             	mov    %rax,%rdx
+  803072:	48 89 05 87 20 0c 00 	mov    %rax,0xc2087(%rip)        # 8c5100 <__x86_shared_cache_size>
+  803079:	48 d1 fa             	sar    %rdx
+  80307c:	48 89 15 85 20 0c 00 	mov    %rdx,0xc2085(%rip)        # 8c5108 <__x86_shared_cache_size_half>
+  803083:	48 8b 05 36 94 0c 00 	mov    0xc9436(%rip),%rax        # 8cc4c0 <_dl_x86_cpu_features+0x160>
+  80308a:	48 89 05 6f 42 0c 00 	mov    %rax,0xc426f(%rip)        # 8c7300 <__x86_shared_non_temporal_threshold>
+  803091:	48 8b 05 30 94 0c 00 	mov    0xc9430(%rip),%rax        # 8cc4c8 <_dl_x86_cpu_features+0x168>
+  803098:	48 89 05 59 20 0c 00 	mov    %rax,0xc2059(%rip)        # 8c50f8 <__x86_rep_movsb_threshold>
+  80309f:	48 8b 05 32 94 0c 00 	mov    0xc9432(%rip),%rax        # 8cc4d8 <_dl_x86_cpu_features+0x178>
+  8030a6:	48 89 05 43 20 0c 00 	mov    %rax,0xc2043(%rip)        # 8c50f0 <__x86_rep_stosb_threshold>
+  8030ad:	48 8b 05 1c 94 0c 00 	mov    0xc941c(%rip),%rax        # 8cc4d0 <_dl_x86_cpu_features+0x170>
+  8030b4:	48 89 05 3d 42 0c 00 	mov    %rax,0xc423d(%rip)        # 8c72f8 <__x86_rep_movsb_stop_threshold>
+  8030bb:	f6 05 d3 93 0c 00 80 	testb  $0x80,0xc93d3(%rip)        # 8cc495 <_dl_x86_cpu_features+0x135>
+  8030c2:	74 07                	je     8030cb <__libc_start_main+0x68b>
+  8030c4:	83 0d 25 42 0c 00 01 	orl    $0x1,0xc4225(%rip)        # 8c72f0 <__x86_string_control>
+  8030cb:	e8 b0 e5 ff ff       	call   801680 <_dl_relocate_static_pie>
+  8030d0:	48 c7 c3 e8 02 80 00 	mov    $0x8002e8,%rbx
+  8030d7:	48 c7 c5 28 05 80 00 	mov    $0x800528,%rbp
+  8030de:	48 39 eb             	cmp    %rbp,%rbx
+  8030e1:	72 20                	jb     803103 <__libc_start_main+0x6c3>
+  8030e3:	e9 31 02 00 00       	jmp    803319 <__libc_start_main+0x8d9>
+  8030e8:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  8030ef:	00 
+  8030f0:	ff 53 10             	call   *0x10(%rbx)
+  8030f3:	48 83 c3 18          	add    $0x18,%rbx
+  8030f7:	49 89 06             	mov    %rax,(%r14)
+  8030fa:	48 39 eb             	cmp    %rbp,%rbx
+  8030fd:	0f 83 16 02 00 00    	jae    803319 <__libc_start_main+0x8d9>
+  803103:	83 7b 08 25          	cmpl   $0x25,0x8(%rbx)
+  803107:	4c 8b 33             	mov    (%rbx),%r14
+  80310a:	74 e4                	je     8030f0 <__libc_start_main+0x6b0>
+  80310c:	48 8d 3d 05 53 09 00 	lea    0x95305(%rip),%rdi        # 898418 <intel_02_known+0x2b8>
+  803113:	e8 68 b7 00 00       	call   80e880 <__libc_fatal>
+  803118:	83 25 c5 92 0c 00 e8 	andl   $0xffffffe8,0xc92c5(%rip)        # 8cc3e4 <_dl_x86_cpu_features+0x84>
+  80311f:	25 ff ff ff fb       	and    $0xfbffffff,%eax
+  803124:	f3 0f 7e 05 7c 92 0c 	movq   0xc927c(%rip),%xmm0        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  80312b:	00 
+  80312c:	25 ff ef ff cf       	and    $0xcfffefff,%eax
+  803131:	f3 0f 7e 0d 6f 53 09 	movq   0x9536f(%rip),%xmm1        # 8984a8 <__PRETTY_FUNCTION__.0+0x18>
+  803138:	00 
+  803139:	48 c7 05 5c 93 0c 00 	movq   $0x0,0xc935c(%rip)        # 8cc4a0 <_dl_x86_cpu_features+0x140>
+  803140:	00 00 00 00 
+  803144:	83 25 f9 92 0c 00 cf 	andl   $0xffffffcf,0xc92f9(%rip)        # 8cc444 <_dl_x86_cpu_features+0xe4>
+  80314b:	66 0f db c1          	pand   %xmm1,%xmm0
+  80314f:	89 05 37 92 0c 00    	mov    %eax,0xc9237(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  803155:	81 25 51 92 0c 00 f3 	andl   $0xfc3ffef3,0xc9251(%rip)        # 8cc3b0 <_dl_x86_cpu_features+0x50>
+  80315c:	fe 3f fc 
+  80315f:	81 25 63 92 0c 00 ff 	andl   $0xfffef7ff,0xc9263(%rip)        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  803166:	f7 fe ff 
+  803169:	66 0f d6 05 37 92 0c 	movq   %xmm0,0xc9237(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  803170:	00 
+  803171:	e9 4b fe ff ff       	jmp    802fc1 <__libc_start_main+0x581>
+  803176:	81 fb 41 75 74 68    	cmp    $0x68747541,%ebx
+  80317c:	0f 85 6e 01 00 00    	jne    8032f0 <__libc_start_main+0x8b0>
+  803182:	81 f9 63 41 4d 44    	cmp    $0x444d4163,%ecx
+  803188:	0f 85 62 01 00 00    	jne    8032f0 <__libc_start_main+0x8b0>
+  80318e:	81 fa 65 6e 74 69    	cmp    $0x69746e65,%edx
+  803194:	0f 85 6c f9 ff ff    	jne    802b06 <__libc_start_main+0xc6>
+  80319a:	48 8d ac 24 c0 00 00 	lea    0xc0(%rsp),%rbp
+  8031a1:	00 
+  8031a2:	48 8d 8c 24 a0 00 00 	lea    0xa0(%rsp),%rcx
+  8031a9:	00 
+  8031aa:	48 8d b4 24 9c 00 00 	lea    0x9c(%rsp),%rsi
+  8031b1:	00 
+  8031b2:	48 8d bc 24 98 00 00 	lea    0x98(%rsp),%rdi
+  8031b9:	00 
+  8031ba:	48 89 ea             	mov    %rbp,%rdx
+  8031bd:	e8 3e ea ff ff       	call   801c00 <get_common_indices.constprop.0>
+  8031c2:	b8 00 00 00 80       	mov    $0x80000000,%eax
+  8031c7:	0f a2                	cpuid  
+  8031c9:	89 c6                	mov    %eax,%esi
+  8031cb:	3d 00 00 00 80       	cmp    $0x80000000,%eax
+  8031d0:	76 6d                	jbe    80323f <__libc_start_main+0x7ff>
+  8031d2:	b8 01 00 00 80       	mov    $0x80000001,%eax
+  8031d7:	0f a2                	cpuid  
+  8031d9:	89 05 d5 91 0c 00    	mov    %eax,0xc91d5(%rip)        # 8cc3b4 <_dl_x86_cpu_features+0x54>
+  8031df:	89 1d d3 91 0c 00    	mov    %ebx,0xc91d3(%rip)        # 8cc3b8 <_dl_x86_cpu_features+0x58>
+  8031e5:	89 0d d1 91 0c 00    	mov    %ecx,0xc91d1(%rip)        # 8cc3bc <_dl_x86_cpu_features+0x5c>
+  8031eb:	89 15 cf 91 0c 00    	mov    %edx,0xc91cf(%rip)        # 8cc3c0 <_dl_x86_cpu_features+0x60>
+  8031f1:	81 fe 06 00 00 80    	cmp    $0x80000006,%esi
+  8031f7:	76 46                	jbe    80323f <__libc_start_main+0x7ff>
+  8031f9:	b8 07 00 00 80       	mov    $0x80000007,%eax
+  8031fe:	0f a2                	cpuid  
+  803200:	89 05 ee 91 0c 00    	mov    %eax,0xc91ee(%rip)        # 8cc3f4 <_dl_x86_cpu_features+0x94>
+  803206:	89 1d ec 91 0c 00    	mov    %ebx,0xc91ec(%rip)        # 8cc3f8 <_dl_x86_cpu_features+0x98>
+  80320c:	89 0d ea 91 0c 00    	mov    %ecx,0xc91ea(%rip)        # 8cc3fc <_dl_x86_cpu_features+0x9c>
+  803212:	89 15 e8 91 0c 00    	mov    %edx,0xc91e8(%rip)        # 8cc400 <_dl_x86_cpu_features+0xa0>
+  803218:	81 fe 07 00 00 80    	cmp    $0x80000007,%esi
+  80321e:	74 1f                	je     80323f <__libc_start_main+0x7ff>
+  803220:	b8 08 00 00 80       	mov    $0x80000008,%eax
+  803225:	0f a2                	cpuid  
+  803227:	89 05 e7 91 0c 00    	mov    %eax,0xc91e7(%rip)        # 8cc414 <_dl_x86_cpu_features+0xb4>
+  80322d:	89 1d e5 91 0c 00    	mov    %ebx,0xc91e5(%rip)        # 8cc418 <_dl_x86_cpu_features+0xb8>
+  803233:	89 0d e3 91 0c 00    	mov    %ecx,0xc91e3(%rip)        # 8cc41c <_dl_x86_cpu_features+0xbc>
+  803239:	89 15 e1 91 0c 00    	mov    %edx,0xc91e1(%rip)        # 8cc420 <_dl_x86_cpu_features+0xc0>
+  80323f:	e8 4c f3 ff ff       	call   802590 <update_active.constprop.0>
+  803244:	f6 05 44 91 0c 00 10 	testb  $0x10,0xc9144(%rip)        # 8cc38f <_dl_x86_cpu_features+0x2f>
+  80324b:	74 11                	je     80325e <__libc_start_main+0x81e>
+  80324d:	8b 05 69 91 0c 00    	mov    0xc9169(%rip),%eax        # 8cc3bc <_dl_x86_cpu_features+0x5c>
+  803253:	25 00 00 01 00       	and    $0x10000,%eax
+  803258:	09 05 6e 91 0c 00    	or     %eax,0xc916e(%rip)        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  80325e:	83 bc 24 98 00 00 00 	cmpl   $0x15,0x98(%rsp)
+  803265:	15 
+  803266:	8b 8c 24 9c 00 00 00 	mov    0x9c(%rsp),%ecx
+  80326d:	0f 84 56 04 00 00    	je     8036c9 <__libc_start_main+0xc89>
+  803273:	8b 84 24 a0 00 00 00 	mov    0xa0(%rsp),%eax
+  80327a:	44 8b 9c 24 98 00 00 	mov    0x98(%rsp),%r11d
+  803281:	00 
+  803282:	41 ba 02 00 00 00    	mov    $0x2,%r10d
+  803288:	4c 8d b4 24 b8 00 00 	lea    0xb8(%rsp),%r14
+  80328f:	00 
+  803290:	e9 af f8 ff ff       	jmp    802b44 <__libc_start_main+0x104>
+  803295:	66 83 3d 99 cd ff ff 	cmpw   $0x38,-0x3267(%rip)        # 800036 <__ehdr_start+0x36>
+  80329c:	38 
+  80329d:	0f 84 6e 03 00 00    	je     803611 <__libc_start_main+0xbd1>
+  8032a3:	48 8d 0d e6 51 09 00 	lea    0x951e6(%rip),%rcx        # 898490 <__PRETTY_FUNCTION__.0>
+  8032aa:	ba 1a 01 00 00       	mov    $0x11a,%edx
+  8032af:	48 8d 35 05 51 09 00 	lea    0x95105(%rip),%rsi        # 8983bb <intel_02_known+0x25b>
+  8032b6:	48 8d 3d 2b 51 09 00 	lea    0x9512b(%rip),%rdi        # 8983e8 <intel_02_known+0x288>
+  8032bd:	e8 6e 11 00 00       	call   804430 <__assert_fail>
+  8032c2:	81 25 e0 90 0c 00 7f 	andl   $0xffffff7f,0xc90e0(%rip)        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  8032c9:	ff ff ff 
+  8032cc:	85 d2                	test   %edx,%edx
+  8032ce:	0f 84 69 fd ff ff    	je     80303d <__libc_start_main+0x5fd>
+  8032d4:	e9 55 fd ff ff       	jmp    80302e <__libc_start_main+0x5ee>
+  8032d9:	48 8b 84 24 c0 00 00 	mov    0xc0(%rsp),%rax
+  8032e0:	00 
+  8032e1:	89 c2                	mov    %eax,%edx
+  8032e3:	a8 01                	test   $0x1,%al
+  8032e5:	0f 85 3a fd ff ff    	jne    803025 <__libc_start_main+0x5e5>
+  8032eb:	e9 2b fd ff ff       	jmp    80301b <__libc_start_main+0x5db>
+  8032f0:	81 fb 48 79 67 6f    	cmp    $0x6f677948,%ebx
+  8032f6:	0f 85 fa 01 00 00    	jne    8034f6 <__libc_start_main+0xab6>
+  8032fc:	81 f9 75 69 6e 65    	cmp    $0x656e6975,%ecx
+  803302:	0f 85 ee 01 00 00    	jne    8034f6 <__libc_start_main+0xab6>
+  803308:	81 fa 6e 47 65 6e    	cmp    $0x6e65476e,%edx
+  80330e:	0f 85 f2 f7 ff ff    	jne    802b06 <__libc_start_main+0xc6>
+  803314:	e9 81 fe ff ff       	jmp    80319a <__libc_start_main+0x75a>
+  803319:	e8 f2 0c 00 00       	call   804010 <__libc_setup_tls>
+  80331e:	8b 05 20 92 0c 00    	mov    0xc9220(%rip),%eax        # 8cc544 <_dl_x86_feature_1>
+  803324:	64 89 04 25 48 00 00 	mov    %eax,%fs:0x48
+  80332b:	00 
+  80332c:	48 8b 05 1d 17 0c 00 	mov    0xc171d(%rip),%rax        # 8c4a50 <_dl_random>
+  803333:	48 8b 00             	mov    (%rax),%rax
+  803336:	30 c0                	xor    %al,%al
+  803338:	64 48 89 04 25 28 00 	mov    %rax,%fs:0x28
+  80333f:	00 00 
+  803341:	e8 ea a2 04 00       	call   84d630 <_dl_discover_osversion>
+  803346:	85 c0                	test   %eax,%eax
+  803348:	0f 88 54 09 00 00    	js     803ca2 <__libc_start_main+0x1262>
+  80334e:	8b 15 e4 8f 0c 00    	mov    0xc8fe4(%rip),%edx        # 8cc338 <_dl_osversion>
+  803354:	85 d2                	test   %edx,%edx
+  803356:	0f 85 ab 0a 00 00    	jne    803e07 <__libc_start_main+0x13c7>
+  80335c:	89 05 d6 8f 0c 00    	mov    %eax,0xc8fd6(%rip)        # 8cc338 <_dl_osversion>
+  803362:	3d ff 01 03 00       	cmp    $0x301ff,%eax
+  803367:	0f 8e 50 03 00 00    	jle    8036bd <__libc_start_main+0xc7d>
+  80336d:	48 83 3d 33 1c 0c 00 	cmpq   $0x0,0xc1c33(%rip)        # 8c4fa8 <_dlfcn_hook+0xa8>
+  803374:	00 
+  803375:	74 05                	je     80337c <__libc_start_main+0x93c>
+  803377:	e8 84 cc 7f ff       	call   0 <_nl_current_LC_CTYPE>
+  80337c:	48 8b 05 cd 16 0c 00 	mov    0xc16cd(%rip),%rax        # 8c4a50 <_dl_random>
+  803383:	48 8b 40 08          	mov    0x8(%rax),%rax
+  803387:	64 48 89 04 25 30 00 	mov    %rax,%fs:0x30
+  80338e:	00 00 
+  803390:	48 8b 44 24 78       	mov    0x78(%rsp),%rax
+  803395:	48 85 c0             	test   %rax,%rax
+  803398:	74 0c                	je     8033a6 <__libc_start_main+0x966>
+  80339a:	31 d2                	xor    %edx,%edx
+  80339c:	31 f6                	xor    %esi,%esi
+  80339e:	48 89 c7             	mov    %rax,%rdi
+  8033a1:	e8 3a 79 00 00       	call   80ace0 <__cxa_atexit>
+  8033a6:	bf 01 00 00 00       	mov    $0x1,%edi
+  8033ab:	e8 e0 a3 04 00       	call   84d790 <__libc_early_init>
+  8033b0:	48 8b 15 79 8e 0c 00 	mov    0xc8e79(%rip),%rdx        # 8cc230 <__environ>
+  8033b7:	4c 89 ee             	mov    %r13,%rsi
+  8033ba:	44 89 e7             	mov    %r12d,%edi
+  8033bd:	e8 9e a4 04 00       	call   84d860 <__libc_init_first>
+  8033c2:	31 d2                	xor    %edx,%edx
+  8033c4:	31 f6                	xor    %esi,%esi
+  8033c6:	48 8d 3d 53 e7 ff ff 	lea    -0x18ad(%rip),%rdi        # 801b20 <call_fini>
+  8033cd:	e8 0e 79 00 00       	call   80ace0 <__cxa_atexit>
+  8033d2:	83 3d b7 16 0c 00 00 	cmpl   $0x0,0xc16b7(%rip)        # 8c4a90 <__libc_enable_secure>
+  8033d9:	0f 85 35 0a 00 00    	jne    803e14 <__libc_start_main+0x13d4>
+  8033df:	4c 8d 35 ea e3 0b 00 	lea    0xbe3ea(%rip),%r14        # 8c17d0 <__frame_dummy_init_array_entry>
+  8033e6:	48 8d 2d e3 e3 0b 00 	lea    0xbe3e3(%rip),%rbp        # 8c17d0 <__frame_dummy_init_array_entry>
+  8033ed:	45 31 ff             	xor    %r15d,%r15d
+  8033f0:	48 8b 1d 39 8e 0c 00 	mov    0xc8e39(%rip),%rbx        # 8cc230 <__environ>
+  8033f7:	4c 29 f5             	sub    %r14,%rbp
+  8033fa:	48 c1 fd 03          	sar    $0x3,%rbp
+  8033fe:	74 16                	je     803416 <__libc_start_main+0x9d6>
+  803400:	48 89 da             	mov    %rbx,%rdx
+  803403:	4c 89 ee             	mov    %r13,%rsi
+  803406:	44 89 e7             	mov    %r12d,%edi
+  803409:	43 ff 14 fe          	call   *(%r14,%r15,8)
+  80340d:	49 83 c7 01          	add    $0x1,%r15
+  803411:	4c 39 fd             	cmp    %r15,%rbp
+  803414:	75 ea                	jne    803400 <__libc_start_main+0x9c0>
+  803416:	e8 e5 db ff ff       	call   801000 <_init>
+  80341b:	4c 8d 35 ae e3 0b 00 	lea    0xbe3ae(%rip),%r14        # 8c17d0 <__frame_dummy_init_array_entry>
+  803422:	48 8d 2d af e3 0b 00 	lea    0xbe3af(%rip),%rbp        # 8c17d8 <__do_global_dtors_aux_fini_array_entry>
+  803429:	45 31 ff             	xor    %r15d,%r15d
+  80342c:	4c 29 f5             	sub    %r14,%rbp
+  80342f:	48 c1 fd 03          	sar    $0x3,%rbp
+  803433:	74 19                	je     80344e <__libc_start_main+0xa0e>
+  803435:	0f 1f 00             	nopl   (%rax)
+  803438:	48 89 da             	mov    %rbx,%rdx
+  80343b:	4c 89 ee             	mov    %r13,%rsi
+  80343e:	44 89 e7             	mov    %r12d,%edi
+  803441:	43 ff 14 fe          	call   *(%r14,%r15,8)
+  803445:	49 83 c7 01          	add    $0x1,%r15
+  803449:	4c 39 fd             	cmp    %r15,%rbp
+  80344c:	75 ea                	jne    803438 <__libc_start_main+0x9f8>
+  80344e:	31 f6                	xor    %esi,%esi
+  803450:	31 ff                	xor    %edi,%edi
+  803452:	e8 c9 69 04 00       	call   849e20 <_dl_debug_initialize>
+  803457:	48 8b 7c 24 70       	mov    0x70(%rsp),%rdi
+  80345c:	4c 89 ea             	mov    %r13,%rdx
+  80345f:	44 89 e6             	mov    %r12d,%esi
+  803462:	e8 f9 e6 ff ff       	call   801b60 <__libc_start_call_main>
+  803467:	8b 15 3b 8f 0c 00    	mov    0xc8f3b(%rip),%edx        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  80346d:	f7 c2 00 00 00 10    	test   $0x10000000,%edx
+  803473:	74 37                	je     8034ac <__libc_start_main+0xa6c>
+  803475:	f7 c2 00 00 00 08    	test   $0x8000000,%edx
+  80347b:	74 1b                	je     803498 <__libc_start_main+0xa58>
+  80347d:	f7 c2 00 00 00 04    	test   $0x4000000,%edx
+  803483:	74 27                	je     8034ac <__libc_start_main+0xa6c>
+  803485:	48 8d 05 26 4f 09 00 	lea    0x94f26(%rip),%rax        # 8983b2 <intel_02_known+0x252>
+  80348c:	48 89 05 fd 90 0c 00 	mov    %rax,0xc90fd(%rip)        # 8cc590 <_dl_platform>
+  803493:	e9 41 fb ff ff       	jmp    802fd9 <__libc_start_main+0x599>
+  803498:	89 d1                	mov    %edx,%ecx
+  80349a:	81 e1 00 00 02 40    	and    $0x40020000,%ecx
+  8034a0:	81 f9 00 00 02 40    	cmp    $0x40020000,%ecx
+  8034a6:	0f 84 7d 07 00 00    	je     803c29 <__libc_start_main+0x11e9>
+  8034ac:	f6 c2 20             	test   $0x20,%dl
+  8034af:	0f 84 24 fb ff ff    	je     802fd9 <__libc_start_main+0x599>
+  8034b5:	f6 c4 10             	test   $0x10,%ah
+  8034b8:	0f 84 1b fb ff ff    	je     802fd9 <__libc_start_main+0x599>
+  8034be:	81 e2 08 01 00 00    	and    $0x108,%edx
+  8034c4:	81 fa 08 01 00 00    	cmp    $0x108,%edx
+  8034ca:	0f 85 09 fb ff ff    	jne    802fd9 <__libc_start_main+0x599>
+  8034d0:	f6 05 f5 8e 0c 00 20 	testb  $0x20,0xc8ef5(%rip)        # 8cc3cc <_dl_x86_cpu_features+0x6c>
+  8034d7:	0f 84 fc fa ff ff    	je     802fd9 <__libc_start_main+0x599>
+  8034dd:	25 00 00 c0 00       	and    $0xc00000,%eax
+  8034e2:	3d 00 00 c0 00       	cmp    $0xc00000,%eax
+  8034e7:	0f 85 ec fa ff ff    	jne    802fd9 <__libc_start_main+0x599>
+  8034ed:	48 8d 05 b6 4e 09 00 	lea    0x94eb6(%rip),%rax        # 8983aa <intel_02_known+0x24a>
+  8034f4:	eb 96                	jmp    80348c <__libc_start_main+0xa4c>
+  8034f6:	81 fb 43 65 6e 74    	cmp    $0x746e6543,%ebx
+  8034fc:	0f 85 68 05 00 00    	jne    803a6a <__libc_start_main+0x102a>
+  803502:	81 f9 61 75 6c 73    	cmp    $0x736c7561,%ecx
+  803508:	0f 85 5c 05 00 00    	jne    803a6a <__libc_start_main+0x102a>
+  80350e:	81 fa 61 75 72 48    	cmp    $0x48727561,%edx
+  803514:	0f 85 ec f5 ff ff    	jne    802b06 <__libc_start_main+0xc6>
+  80351a:	48 8d ac 24 c0 00 00 	lea    0xc0(%rsp),%rbp
+  803521:	00 
+  803522:	4c 8d b4 24 b8 00 00 	lea    0xb8(%rsp),%r14
+  803529:	00 
+  80352a:	48 8d b4 24 9c 00 00 	lea    0x9c(%rsp),%rsi
+  803531:	00 
+  803532:	48 8d bc 24 98 00 00 	lea    0x98(%rsp),%rdi
+  803539:	00 
+  80353a:	48 89 e9             	mov    %rbp,%rcx
+  80353d:	4c 89 f2             	mov    %r14,%rdx
+  803540:	e8 bb e6 ff ff       	call   801c00 <get_common_indices.constprop.0>
+  803545:	b8 00 00 00 80       	mov    $0x80000000,%eax
+  80354a:	0f a2                	cpuid  
+  80354c:	89 c6                	mov    %eax,%esi
+  80354e:	3d 00 00 00 80       	cmp    $0x80000000,%eax
+  803553:	76 6d                	jbe    8035c2 <__libc_start_main+0xb82>
+  803555:	b8 01 00 00 80       	mov    $0x80000001,%eax
+  80355a:	0f a2                	cpuid  
+  80355c:	89 05 52 8e 0c 00    	mov    %eax,0xc8e52(%rip)        # 8cc3b4 <_dl_x86_cpu_features+0x54>
+  803562:	89 1d 50 8e 0c 00    	mov    %ebx,0xc8e50(%rip)        # 8cc3b8 <_dl_x86_cpu_features+0x58>
+  803568:	89 0d 4e 8e 0c 00    	mov    %ecx,0xc8e4e(%rip)        # 8cc3bc <_dl_x86_cpu_features+0x5c>
+  80356e:	89 15 4c 8e 0c 00    	mov    %edx,0xc8e4c(%rip)        # 8cc3c0 <_dl_x86_cpu_features+0x60>
+  803574:	81 fe 06 00 00 80    	cmp    $0x80000006,%esi
+  80357a:	76 46                	jbe    8035c2 <__libc_start_main+0xb82>
+  80357c:	b8 07 00 00 80       	mov    $0x80000007,%eax
+  803581:	0f a2                	cpuid  
+  803583:	89 05 6b 8e 0c 00    	mov    %eax,0xc8e6b(%rip)        # 8cc3f4 <_dl_x86_cpu_features+0x94>
+  803589:	89 1d 69 8e 0c 00    	mov    %ebx,0xc8e69(%rip)        # 8cc3f8 <_dl_x86_cpu_features+0x98>
+  80358f:	89 0d 67 8e 0c 00    	mov    %ecx,0xc8e67(%rip)        # 8cc3fc <_dl_x86_cpu_features+0x9c>
+  803595:	89 15 65 8e 0c 00    	mov    %edx,0xc8e65(%rip)        # 8cc400 <_dl_x86_cpu_features+0xa0>
+  80359b:	81 fe 07 00 00 80    	cmp    $0x80000007,%esi
+  8035a1:	74 1f                	je     8035c2 <__libc_start_main+0xb82>
+  8035a3:	b8 08 00 00 80       	mov    $0x80000008,%eax
+  8035a8:	0f a2                	cpuid  
+  8035aa:	89 05 64 8e 0c 00    	mov    %eax,0xc8e64(%rip)        # 8cc414 <_dl_x86_cpu_features+0xb4>
+  8035b0:	89 1d 62 8e 0c 00    	mov    %ebx,0xc8e62(%rip)        # 8cc418 <_dl_x86_cpu_features+0xb8>
+  8035b6:	89 0d 60 8e 0c 00    	mov    %ecx,0xc8e60(%rip)        # 8cc41c <_dl_x86_cpu_features+0xbc>
+  8035bc:	89 15 5e 8e 0c 00    	mov    %edx,0xc8e5e(%rip)        # 8cc420 <_dl_x86_cpu_features+0xc0>
+  8035c2:	e8 c9 ef ff ff       	call   802590 <update_active.constprop.0>
+  8035c7:	44 8b 9c 24 98 00 00 	mov    0x98(%rsp),%r11d
+  8035ce:	00 
+  8035cf:	8b 84 24 b8 00 00 00 	mov    0xb8(%rsp),%eax
+  8035d6:	03 84 24 9c 00 00 00 	add    0x9c(%rsp),%eax
+  8035dd:	89 84 24 9c 00 00 00 	mov    %eax,0x9c(%rsp)
+  8035e4:	41 83 fb 06          	cmp    $0x6,%r11d
+  8035e8:	0f 84 cc 05 00 00    	je     803bba <__libc_start_main+0x117a>
+  8035ee:	41 83 fb 07          	cmp    $0x7,%r11d
+  8035f2:	0f 84 5f 06 00 00    	je     803c57 <__libc_start_main+0x1217>
+  8035f8:	8b 8c 24 9c 00 00 00 	mov    0x9c(%rsp),%ecx
+  8035ff:	8b 84 24 a0 00 00 00 	mov    0xa0(%rsp),%eax
+  803606:	41 ba 03 00 00 00    	mov    $0x3,%r10d
+  80360c:	e9 33 f5 ff ff       	jmp    802b44 <__libc_start_main+0x104>
+  803611:	48 8d 05 e8 c9 ff ff 	lea    -0x3618(%rip),%rax        # 800000 <__ehdr_start>
+  803618:	48 03 05 01 ca ff ff 	add    -0x35ff(%rip),%rax        # 800020 <__ehdr_start+0x20>
+  80361f:	48 89 05 ea 8c 0c 00 	mov    %rax,0xc8cea(%rip)        # 8cc310 <_dl_phdr>
+  803626:	0f b7 05 0b ca ff ff 	movzwl -0x35f5(%rip),%eax        # 800038 <__ehdr_start+0x38>
+  80362d:	48 89 05 d4 8c 0c 00 	mov    %rax,0xc8cd4(%rip)        # 8cc308 <_dl_phnum>
+  803634:	e9 6d f4 ff ff       	jmp    802aa6 <__libc_start_main+0x66>
+  803639:	8b 05 6d 8d 0c 00    	mov    0xc8d6d(%rip),%eax        # 8cc3ac <_dl_x86_cpu_features+0x4c>
+  80363f:	25 80 00 00 00       	and    $0x80,%eax
+  803644:	f6 05 67 8d 0c 00 10 	testb  $0x10,0xc8d67(%rip)        # 8cc3b2 <_dl_x86_cpu_features+0x52>
+  80364b:	0f 85 0c 04 00 00    	jne    803a5d <__libc_start_main+0x101d>
+  803651:	ba 01 00 00 00       	mov    $0x1,%edx
+  803656:	85 c0                	test   %eax,%eax
+  803658:	75 0a                	jne    803664 <__libc_start_main+0xc24>
+  80365a:	b8 01 00 00 00       	mov    $0x1,%eax
+  80365f:	83 c8 02             	or     $0x2,%eax
+  803662:	89 c2                	mov    %eax,%edx
+  803664:	89 d6                	mov    %edx,%esi
+  803666:	bf 02 30 00 00       	mov    $0x3002,%edi
+  80366b:	b8 9e 00 00 00       	mov    $0x9e,%eax
+  803670:	0f 05                	syscall 
+  803672:	85 c0                	test   %eax,%eax
+  803674:	0f 84 76 05 00 00    	je     803bf0 <__libc_start_main+0x11b0>
+  80367a:	0f b6 05 bf 8e 0c 00 	movzbl 0xc8ebf(%rip),%eax        # 8cc540 <_dl_x86_feature_control>
+  803681:	89 c2                	mov    %eax,%edx
+  803683:	83 e2 03             	and    $0x3,%edx
+  803686:	80 fa 03             	cmp    $0x3,%dl
+  803689:	0f 84 ae f9 ff ff    	je     80303d <__libc_start_main+0x5fd>
+  80368f:	83 e0 0c             	and    $0xc,%eax
+  803692:	3c 0c                	cmp    $0xc,%al
+  803694:	0f 84 a3 f9 ff ff    	je     80303d <__libc_start_main+0x5fd>
+  80369a:	31 f6                	xor    %esi,%esi
+  80369c:	bf 03 30 00 00       	mov    $0x3003,%edi
+  8036a1:	b8 9e 00 00 00       	mov    $0x9e,%eax
+  8036a6:	0f 05                	syscall 
+  8036a8:	e9 90 f9 ff ff       	jmp    80303d <__libc_start_main+0x5fd>
+  8036ad:	bb 00 40 00 00       	mov    $0x4000,%ebx
+  8036b2:	41 b9 00 02 00 00    	mov    $0x200,%r9d
+  8036b8:	e9 55 f6 ff ff       	jmp    802d12 <__libc_start_main+0x2d2>
+  8036bd:	48 8d 3d 0b 4d 09 00 	lea    0x94d0b(%rip),%rdi        # 8983cf <intel_02_known+0x26f>
+  8036c4:	e8 b7 b1 00 00       	call   80e880 <__libc_fatal>
+  8036c9:	8d 41 a0             	lea    -0x60(%rcx),%eax
+  8036cc:	83 f8 1f             	cmp    $0x1f,%eax
+  8036cf:	0f 87 9e fb ff ff    	ja     803273 <__libc_start_main+0x833>
+  8036d5:	8b 05 b9 8d 0c 00    	mov    0xc8db9(%rip),%eax        # 8cc494 <_dl_x86_cpu_features+0x134>
+  8036db:	80 e4 fd             	and    $0xfd,%ah
+  8036de:	83 c8 0a             	or     $0xa,%eax
+  8036e1:	89 05 ad 8d 0c 00    	mov    %eax,0xc8dad(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  8036e7:	e9 87 fb ff ff       	jmp    803273 <__libc_start_main+0x833>
+  8036ec:	bf bc 00 00 00       	mov    $0xbc,%edi
+  8036f1:	44 89 94 24 8c 00 00 	mov    %r10d,0x8c(%rsp)
+  8036f8:	00 
+  8036f9:	e8 a2 ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  8036fe:	bf bf 00 00 00       	mov    $0xbf,%edi
+  803703:	48 89 c3             	mov    %rax,%rbx
+  803706:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  80370b:	e8 90 ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803710:	bf c2 00 00 00       	mov    $0xc2,%edi
+  803715:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+  80371a:	e8 81 ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  80371f:	bf b9 00 00 00       	mov    $0xb9,%edi
+  803724:	48 89 84 24 a8 00 00 	mov    %rax,0xa8(%rsp)
+  80372b:	00 
+  80372c:	49 89 c7             	mov    %rax,%r15
+  80372f:	e8 6c ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803734:	bf bb 00 00 00       	mov    $0xbb,%edi
+  803739:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  80373e:	e8 5d ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803743:	bf bd 00 00 00       	mov    $0xbd,%edi
+  803748:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  80374d:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  803752:	e8 49 ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803757:	bf be 00 00 00       	mov    $0xbe,%edi
+  80375c:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+  803761:	e8 3a ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803766:	4c 8b 44 24 40       	mov    0x40(%rsp),%r8
+  80376b:	bf c0 00 00 00       	mov    $0xc0,%edi
+  803770:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+  803775:	4c 89 84 24 80 00 00 	mov    %r8,0x80(%rsp)
+  80377c:	00 
+  80377d:	e8 1e ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803782:	bf c1 00 00 00       	mov    $0xc1,%edi
+  803787:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+  80378c:	e8 0f ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  803791:	bf c3 00 00 00       	mov    $0xc3,%edi
+  803796:	48 89 44 24 50       	mov    %rax,0x50(%rsp)
+  80379b:	e8 00 ed ff ff       	call   8024a0 <handle_intel.constprop.0>
+  8037a0:	bf c4 00 00 00       	mov    $0xc4,%edi
+  8037a5:	48 89 44 24 58       	mov    %rax,0x58(%rsp)
+  8037aa:	e8 f1 ec ff ff       	call   8024a0 <handle_intel.constprop.0>
+  8037af:	bf c5 00 00 00       	mov    $0xc5,%edi
+  8037b4:	48 89 44 24 60       	mov    %rax,0x60(%rsp)
+  8037b9:	e8 e2 ec ff ff       	call   8024a0 <handle_intel.constprop.0>
+  8037be:	48 8b 94 24 80 00 00 	mov    0x80(%rsp),%rdx
+  8037c5:	00 
+  8037c6:	48 8d b4 24 a4 00 00 	lea    0xa4(%rsp),%rsi
+  8037cd:	00 
+  8037ce:	48 8d bc 24 a8 00 00 	lea    0xa8(%rsp),%rdi
+  8037d5:	00 
+  8037d6:	48 89 44 24 68       	mov    %rax,0x68(%rsp)
+  8037db:	e8 b0 e5 ff ff       	call   801d90 <get_common_cache_info.constprop.0>
+  8037e0:	4c 8b 84 24 80 00 00 	mov    0x80(%rsp),%r8
+  8037e7:	00 
+  8037e8:	44 8b 94 24 8c 00 00 	mov    0x8c(%rsp),%r10d
+  8037ef:	00 
+  8037f0:	e9 3b f4 ff ff       	jmp    802c30 <__libc_start_main+0x1f0>
+  8037f5:	bf bc 00 00 00       	mov    $0xbc,%edi
+  8037fa:	44 89 94 24 8c 00 00 	mov    %r10d,0x8c(%rsp)
+  803801:	00 
+  803802:	e8 99 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803807:	bf bf 00 00 00       	mov    $0xbf,%edi
+  80380c:	48 89 c3             	mov    %rax,%rbx
+  80380f:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  803814:	e8 87 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803819:	bf c2 00 00 00       	mov    $0xc2,%edi
+  80381e:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+  803823:	e8 78 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803828:	bf b9 00 00 00       	mov    $0xb9,%edi
+  80382d:	48 89 84 24 a8 00 00 	mov    %rax,0xa8(%rsp)
+  803834:	00 
+  803835:	49 89 c7             	mov    %rax,%r15
+  803838:	e8 63 df ff ff       	call   8017a0 <handle_zhaoxin>
+  80383d:	bf bb 00 00 00       	mov    $0xbb,%edi
+  803842:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  803847:	e8 54 df ff ff       	call   8017a0 <handle_zhaoxin>
+  80384c:	bf bd 00 00 00       	mov    $0xbd,%edi
+  803851:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  803856:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  80385b:	e8 40 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803860:	bf be 00 00 00       	mov    $0xbe,%edi
+  803865:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+  80386a:	e8 31 df ff ff       	call   8017a0 <handle_zhaoxin>
+  80386f:	4c 8b 44 24 40       	mov    0x40(%rsp),%r8
+  803874:	bf c0 00 00 00       	mov    $0xc0,%edi
+  803879:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+  80387e:	4c 89 44 24 68       	mov    %r8,0x68(%rsp)
+  803883:	e8 18 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803888:	bf c1 00 00 00       	mov    $0xc1,%edi
+  80388d:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+  803892:	e8 09 df ff ff       	call   8017a0 <handle_zhaoxin>
+  803897:	bf c3 00 00 00       	mov    $0xc3,%edi
+  80389c:	48 89 44 24 50       	mov    %rax,0x50(%rsp)
+  8038a1:	e8 fa de ff ff       	call   8017a0 <handle_zhaoxin>
+  8038a6:	bf c4 00 00 00       	mov    $0xc4,%edi
+  8038ab:	48 89 44 24 58       	mov    %rax,0x58(%rsp)
+  8038b0:	e8 eb de ff ff       	call   8017a0 <handle_zhaoxin>
+  8038b5:	4c 8b 44 24 68       	mov    0x68(%rsp),%r8
+  8038ba:	48 8d b4 24 a4 00 00 	lea    0xa4(%rsp),%rsi
+  8038c1:	00 
+  8038c2:	48 8d bc 24 a8 00 00 	lea    0xa8(%rsp),%rdi
+  8038c9:	00 
+  8038ca:	48 89 44 24 60       	mov    %rax,0x60(%rsp)
+  8038cf:	4c 89 c2             	mov    %r8,%rdx
+  8038d2:	4c 89 84 24 80 00 00 	mov    %r8,0x80(%rsp)
+  8038d9:	00 
+  8038da:	e8 b1 e4 ff ff       	call   801d90 <get_common_cache_info.constprop.0>
+  8038df:	4c 8b 84 24 80 00 00 	mov    0x80(%rsp),%r8
+  8038e6:	00 
+  8038e7:	48 c7 44 24 68 ff ff 	movq   $0xffffffffffffffff,0x68(%rsp)
+  8038ee:	ff ff 
+  8038f0:	44 8b 94 24 8c 00 00 	mov    0x8c(%rsp),%r10d
+  8038f7:	00 
+  8038f8:	e9 33 f3 ff ff       	jmp    802c30 <__libc_start_main+0x1f0>
+  8038fd:	bf bc 00 00 00       	mov    $0xbc,%edi
+  803902:	e8 69 e0 ff ff       	call   801970 <handle_amd>
+  803907:	bf bf 00 00 00       	mov    $0xbf,%edi
+  80390c:	48 89 c3             	mov    %rax,%rbx
+  80390f:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  803914:	e8 57 e0 ff ff       	call   801970 <handle_amd>
+  803919:	bf c2 00 00 00       	mov    $0xc2,%edi
+  80391e:	48 89 44 24 40       	mov    %rax,0x40(%rsp)
+  803923:	e8 48 e0 ff ff       	call   801970 <handle_amd>
+  803928:	bf b9 00 00 00       	mov    $0xb9,%edi
+  80392d:	49 89 c1             	mov    %rax,%r9
+  803930:	48 89 84 24 a8 00 00 	mov    %rax,0xa8(%rsp)
+  803937:	00 
+  803938:	e8 33 e0 ff ff       	call   801970 <handle_amd>
+  80393d:	bf bb 00 00 00       	mov    $0xbb,%edi
+  803942:	4d 89 cf             	mov    %r9,%r15
+  803945:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  80394a:	e8 21 e0 ff ff       	call   801970 <handle_amd>
+  80394f:	bf bd 00 00 00       	mov    $0xbd,%edi
+  803954:	48 89 5c 24 20       	mov    %rbx,0x20(%rsp)
+  803959:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  80395e:	e8 0d e0 ff ff       	call   801970 <handle_amd>
+  803963:	bf be 00 00 00       	mov    $0xbe,%edi
+  803968:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+  80396d:	e8 fe df ff ff       	call   801970 <handle_amd>
+  803972:	4c 8b 44 24 40       	mov    0x40(%rsp),%r8
+  803977:	bf c0 00 00 00       	mov    $0xc0,%edi
+  80397c:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+  803981:	4c 89 44 24 68       	mov    %r8,0x68(%rsp)
+  803986:	e8 e5 df ff ff       	call   801970 <handle_amd>
+  80398b:	bf c1 00 00 00       	mov    $0xc1,%edi
+  803990:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+  803995:	e8 d6 df ff ff       	call   801970 <handle_amd>
+  80399a:	bf c3 00 00 00       	mov    $0xc3,%edi
+  80399f:	48 89 44 24 50       	mov    %rax,0x50(%rsp)
+  8039a4:	e8 c7 df ff ff       	call   801970 <handle_amd>
+  8039a9:	bf c4 00 00 00       	mov    $0xc4,%edi
+  8039ae:	48 89 44 24 58       	mov    %rax,0x58(%rsp)
+  8039b3:	e8 b8 df ff ff       	call   801970 <handle_amd>
+  8039b8:	48 89 44 24 60       	mov    %rax,0x60(%rsp)
+  8039bd:	b8 00 00 00 80       	mov    $0x80000000,%eax
+  8039c2:	0f a2                	cpuid  
+  8039c4:	4d 85 c9             	test   %r9,%r9
+  8039c7:	4c 8b 44 24 68       	mov    0x68(%rsp),%r8
+  8039cc:	0f 8e 6f 02 00 00    	jle    803c41 <__libc_start_main+0x1201>
+  8039d2:	3d 07 00 00 80       	cmp    $0x80000007,%eax
+  8039d7:	0f 87 22 02 00 00    	ja     803bff <__libc_start_main+0x11bf>
+  8039dd:	b8 01 00 00 00       	mov    $0x1,%eax
+  8039e2:	0f a2                	cpuid  
+  8039e4:	81 e2 00 00 00 10    	and    $0x10000000,%edx
+  8039ea:	74 10                	je     8039fc <__libc_start_main+0xfbc>
+  8039ec:	89 de                	mov    %ebx,%esi
+  8039ee:	c1 ee 10             	shr    $0x10,%esi
+  8039f1:	40 0f b6 c6          	movzbl %sil,%eax
+  8039f5:	89 84 24 a4 00 00 00 	mov    %eax,0xa4(%rsp)
+  8039fc:	8b 84 24 a4 00 00 00 	mov    0xa4(%rsp),%eax
+  803a03:	85 c0                	test   %eax,%eax
+  803a05:	74 12                	je     803a19 <__libc_start_main+0xfd9>
+  803a07:	89 c1                	mov    %eax,%ecx
+  803a09:	4c 89 c8             	mov    %r9,%rax
+  803a0c:	48 99                	cqto   
+  803a0e:	48 f7 f9             	idiv   %rcx
+  803a11:	48 89 84 24 a8 00 00 	mov    %rax,0xa8(%rsp)
+  803a18:	00 
+  803a19:	48 8b b4 24 a8 00 00 	mov    0xa8(%rsp),%rsi
+  803a20:	00 
+  803a21:	41 83 fb 16          	cmp    $0x16,%r11d
+  803a25:	0f 86 5e 02 00 00    	jbe    803c89 <__libc_start_main+0x1249>
+  803a2b:	b8 1d 00 00 80       	mov    $0x8000001d,%eax
+  803a30:	b9 03 00 00 00       	mov    $0x3,%ecx
+  803a35:	0f a2                	cpuid  
+  803a37:	48 c7 44 24 68 ff ff 	movq   $0xffffffffffffffff,0x68(%rsp)
+  803a3e:	ff ff 
+  803a40:	c1 e8 0e             	shr    $0xe,%eax
+  803a43:	25 ff 0f 00 00       	and    $0xfff,%eax
+  803a48:	48 83 c0 01          	add    $0x1,%rax
+  803a4c:	48 0f af c6          	imul   %rsi,%rax
+  803a50:	48 89 84 24 a8 00 00 	mov    %rax,0xa8(%rsp)
+  803a57:	00 
+  803a58:	e9 d3 f1 ff ff       	jmp    802c30 <__libc_start_main+0x1f0>
+  803a5d:	85 c0                	test   %eax,%eax
+  803a5f:	0f 85 15 fc ff ff    	jne    80367a <__libc_start_main+0xc3a>
+  803a65:	e9 f5 fb ff ff       	jmp    80365f <__libc_start_main+0xc1f>
+  803a6a:	81 fb 20 20 53 68    	cmp    $0x68532020,%ebx
+  803a70:	40 0f 94 c6          	sete   %sil
+  803a74:	81 f9 61 69 20 20    	cmp    $0x20206961,%ecx
+  803a7a:	0f 94 c0             	sete   %al
+  803a7d:	40 84 c6             	test   %al,%sil
+  803a80:	0f 84 80 f0 ff ff    	je     802b06 <__libc_start_main+0xc6>
+  803a86:	81 fa 61 6e 67 68    	cmp    $0x68676e61,%edx
+  803a8c:	0f 84 88 fa ff ff    	je     80351a <__libc_start_main+0xada>
+  803a92:	e9 6f f0 ff ff       	jmp    802b06 <__libc_start_main+0xc6>
+  803a97:	48 8d ac 24 c0 00 00 	lea    0xc0(%rsp),%rbp
+  803a9e:	00 
+  803a9f:	48 8d 8c 24 a0 00 00 	lea    0xa0(%rsp),%rcx
+  803aa6:	00 
+  803aa7:	48 8d b4 24 9c 00 00 	lea    0x9c(%rsp),%rsi
+  803aae:	00 
+  803aaf:	48 8d bc 24 98 00 00 	lea    0x98(%rsp),%rdi
+  803ab6:	00 
+  803ab7:	48 89 ea             	mov    %rbp,%rdx
+  803aba:	e8 41 e1 ff ff       	call   801c00 <get_common_indices.constprop.0>
+  803abf:	b8 00 00 00 80       	mov    $0x80000000,%eax
+  803ac4:	0f a2                	cpuid  
+  803ac6:	89 c6                	mov    %eax,%esi
+  803ac8:	3d 00 00 00 80       	cmp    $0x80000000,%eax
+  803acd:	76 6d                	jbe    803b3c <__libc_start_main+0x10fc>
+  803acf:	b8 01 00 00 80       	mov    $0x80000001,%eax
+  803ad4:	0f a2                	cpuid  
+  803ad6:	89 05 d8 88 0c 00    	mov    %eax,0xc88d8(%rip)        # 8cc3b4 <_dl_x86_cpu_features+0x54>
+  803adc:	89 1d d6 88 0c 00    	mov    %ebx,0xc88d6(%rip)        # 8cc3b8 <_dl_x86_cpu_features+0x58>
+  803ae2:	89 0d d4 88 0c 00    	mov    %ecx,0xc88d4(%rip)        # 8cc3bc <_dl_x86_cpu_features+0x5c>
+  803ae8:	89 15 d2 88 0c 00    	mov    %edx,0xc88d2(%rip)        # 8cc3c0 <_dl_x86_cpu_features+0x60>
+  803aee:	81 fe 06 00 00 80    	cmp    $0x80000006,%esi
+  803af4:	76 46                	jbe    803b3c <__libc_start_main+0x10fc>
+  803af6:	b8 07 00 00 80       	mov    $0x80000007,%eax
+  803afb:	0f a2                	cpuid  
+  803afd:	89 05 f1 88 0c 00    	mov    %eax,0xc88f1(%rip)        # 8cc3f4 <_dl_x86_cpu_features+0x94>
+  803b03:	89 1d ef 88 0c 00    	mov    %ebx,0xc88ef(%rip)        # 8cc3f8 <_dl_x86_cpu_features+0x98>
+  803b09:	89 0d ed 88 0c 00    	mov    %ecx,0xc88ed(%rip)        # 8cc3fc <_dl_x86_cpu_features+0x9c>
+  803b0f:	89 15 eb 88 0c 00    	mov    %edx,0xc88eb(%rip)        # 8cc400 <_dl_x86_cpu_features+0xa0>
+  803b15:	81 fe 07 00 00 80    	cmp    $0x80000007,%esi
+  803b1b:	74 1f                	je     803b3c <__libc_start_main+0x10fc>
+  803b1d:	b8 08 00 00 80       	mov    $0x80000008,%eax
+  803b22:	0f a2                	cpuid  
+  803b24:	89 05 ea 88 0c 00    	mov    %eax,0xc88ea(%rip)        # 8cc414 <_dl_x86_cpu_features+0xb4>
+  803b2a:	89 1d e8 88 0c 00    	mov    %ebx,0xc88e8(%rip)        # 8cc418 <_dl_x86_cpu_features+0xb8>
+  803b30:	89 0d e6 88 0c 00    	mov    %ecx,0xc88e6(%rip)        # 8cc41c <_dl_x86_cpu_features+0xbc>
+  803b36:	89 15 e4 88 0c 00    	mov    %edx,0xc88e4(%rip)        # 8cc420 <_dl_x86_cpu_features+0xc0>
+  803b3c:	e8 4f ea ff ff       	call   802590 <update_active.constprop.0>
+  803b41:	83 bc 24 98 00 00 00 	cmpl   $0x6,0x98(%rsp)
+  803b48:	06 
+  803b49:	8b 8c 24 9c 00 00 00 	mov    0x9c(%rsp),%ecx
+  803b50:	0f 84 58 01 00 00    	je     803cae <__libc_start_main+0x126e>
+  803b56:	8b 84 24 a0 00 00 00 	mov    0xa0(%rsp),%eax
+  803b5d:	f6 05 37 88 0c 00 08 	testb  $0x8,0xc8837(%rip)        # 8cc39b <_dl_x86_cpu_features+0x3b>
+  803b64:	75 1c                	jne    803b82 <__libc_start_main+0x1142>
+  803b66:	f6 05 c7 88 0c 00 10 	testb  $0x10,0xc88c7(%rip)        # 8cc434 <_dl_x86_cpu_features+0xd4>
+  803b6d:	75 0a                	jne    803b79 <__libc_start_main+0x1139>
+  803b6f:	81 0d 1b 89 0c 00 00 	orl    $0x1000,0xc891b(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803b76:	10 00 00 
+  803b79:	f6 05 29 88 0c 00 08 	testb  $0x8,0xc8829(%rip)        # 8cc3a9 <_dl_x86_cpu_features+0x49>
+  803b80:	74 0a                	je     803b8c <__libc_start_main+0x114c>
+  803b82:	81 0d 08 89 0c 00 00 	orl    $0x400,0xc8908(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803b89:	04 00 00 
+  803b8c:	f6 05 0d 88 0c 00 10 	testb  $0x10,0xc880d(%rip)        # 8cc3a0 <_dl_x86_cpu_features+0x40>
+  803b93:	74 0a                	je     803b9f <__libc_start_main+0x115f>
+  803b95:	81 0d f5 88 0c 00 00 	orl    $0x8000,0xc88f5(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803b9c:	80 00 00 
+  803b9f:	44 8b 9c 24 98 00 00 	mov    0x98(%rsp),%r11d
+  803ba6:	00 
+  803ba7:	41 ba 01 00 00 00    	mov    $0x1,%r10d
+  803bad:	4c 8d b4 24 b8 00 00 	lea    0xb8(%rsp),%r14
+  803bb4:	00 
+  803bb5:	e9 8a ef ff ff       	jmp    802b44 <__libc_start_main+0x104>
+  803bba:	83 f8 0f             	cmp    $0xf,%eax
+  803bbd:	74 09                	je     803bc8 <__libc_start_main+0x1188>
+  803bbf:	83 f8 19             	cmp    $0x19,%eax
+  803bc2:	0f 85 30 fa ff ff    	jne    8035f8 <__libc_start_main+0xbb8>
+  803bc8:	8b 05 c6 88 0c 00    	mov    0xc88c6(%rip),%eax        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803bce:	83 25 d3 87 0c 00 df 	andl   $0xffffffdf,0xc87d3(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  803bd5:	81 25 ad 87 0c 00 ff 	andl   $0xefffffff,0xc87ad(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  803bdc:	ff ff ef 
+  803bdf:	80 e4 fd             	and    $0xfd,%ah
+  803be2:	80 cc 01             	or     $0x1,%ah
+  803be5:	89 05 a9 88 0c 00    	mov    %eax,0xc88a9(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803beb:	e9 08 fa ff ff       	jmp    8035f8 <__libc_start_main+0xbb8>
+  803bf0:	89 d0                	mov    %edx,%eax
+  803bf2:	f7 d0                	not    %eax
+  803bf4:	21 05 4a 89 0c 00    	and    %eax,0xc894a(%rip)        # 8cc544 <_dl_x86_feature_1>
+  803bfa:	e9 7b fa ff ff       	jmp    80367a <__libc_start_main+0xc3a>
+  803bff:	b8 08 00 00 80       	mov    $0x80000008,%eax
+  803c04:	0f a2                	cpuid  
+  803c06:	c1 e9 0c             	shr    $0xc,%ecx
+  803c09:	b8 01 00 00 00       	mov    $0x1,%eax
+  803c0e:	83 e1 0f             	and    $0xf,%ecx
+  803c11:	d3 e0                	shl    %cl,%eax
+  803c13:	89 84 24 a4 00 00 00 	mov    %eax,0xa4(%rsp)
+  803c1a:	41 83 fb 16          	cmp    $0x16,%r11d
+  803c1e:	0f 87 b9 fd ff ff    	ja     8039dd <__libc_start_main+0xf9d>
+  803c24:	e9 de fd ff ff       	jmp    803a07 <__libc_start_main+0xfc7>
+  803c29:	85 d2                	test   %edx,%edx
+  803c2b:	0f 89 7b f8 ff ff    	jns    8034ac <__libc_start_main+0xa6c>
+  803c31:	48 c7 05 c4 86 0c 00 	movq   $0x6,0xc86c4(%rip)        # 8cc300 <_dl_hwcap>
+  803c38:	06 00 00 00 
+  803c3c:	e9 6b f8 ff ff       	jmp    8034ac <__libc_start_main+0xa6c>
+  803c41:	4c 89 84 24 a8 00 00 	mov    %r8,0xa8(%rsp)
+  803c48:	00 
+  803c49:	48 c7 44 24 68 ff ff 	movq   $0xffffffffffffffff,0x68(%rsp)
+  803c50:	ff ff 
+  803c52:	e9 d9 ef ff ff       	jmp    802c30 <__libc_start_main+0x1f0>
+  803c57:	83 f8 1b             	cmp    $0x1b,%eax
+  803c5a:	0f 84 68 ff ff ff    	je     803bc8 <__libc_start_main+0x1188>
+  803c60:	83 f8 3b             	cmp    $0x3b,%eax
+  803c63:	0f 85 8f f9 ff ff    	jne    8035f8 <__libc_start_main+0xbb8>
+  803c69:	81 25 19 87 0c 00 ff 	andl   $0xefffffff,0xc8719(%rip)        # 8cc38c <_dl_x86_cpu_features+0x2c>
+  803c70:	ff ff ef 
+  803c73:	83 25 2e 87 0c 00 df 	andl   $0xffffffdf,0xc872e(%rip)        # 8cc3a8 <_dl_x86_cpu_features+0x48>
+  803c7a:	81 25 10 88 0c 00 ff 	andl   $0xfffffdff,0xc8810(%rip)        # 8cc494 <_dl_x86_cpu_features+0x134>
+  803c81:	fd ff ff 
+  803c84:	e9 6f f9 ff ff       	jmp    8035f8 <__libc_start_main+0xbb8>
+  803c89:	48 c7 44 24 68 ff ff 	movq   $0xffffffffffffffff,0x68(%rsp)
+  803c90:	ff ff 
+  803c92:	4c 01 c6             	add    %r8,%rsi
+  803c95:	48 89 b4 24 a8 00 00 	mov    %rsi,0xa8(%rsp)

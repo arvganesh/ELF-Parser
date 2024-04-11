@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "cmath": "c",
+        "compare": "c",
+        "concepts": "c",
+        "limits": "c",
+        "*.tcc": "c",
+        "type_traits": "c",
+        "elf.h": "c"
+    }
+}

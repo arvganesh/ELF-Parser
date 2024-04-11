@@ -134,8 +134,6 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
 	addr = ELF_PAGESTART(addr);
 	size = ELF_PAGEALIGN(size);
 
-    /* mmap() will return -EINVAL if given a zero size, but a
-	 * segment with zero filesize is perfectly valid */
 	if (!size)
 		return addr;
     
@@ -186,13 +184,6 @@ int elf_load(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, int elf_p
             fprintf(stderr, "elf_load: Failed to map ELF segment.\n");
             return -1;
         }
-     
-    // else {
-    //     fprintf(stderr, "FILE SIZE 0\n");
-    //     exit(0);
-    //     map_addr = zero_start = ELF_PAGESTART(addr);
-    //     zero_end = zero_start + ELF_PAGEOFFSET(elf_ppnt->p_vaddr) + elf_ppnt->p_memsz;
-    // }
 
     return map_addr;
 }
@@ -425,7 +416,7 @@ int load_elf_binary(struct binary_file* fp) {
         vaddr = elf_ppnt->p_vaddr;
 
         if (!first_pt_load) {
-            // elf_flags |= MAP_FIXED;
+            elf_flags |= MAP_FIXED;
         }
 
         // Print elf_ppnt

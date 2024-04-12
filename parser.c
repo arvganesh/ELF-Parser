@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include <assert.h>
 #include <sys/mman.h>
 #include <elf.h>
@@ -71,13 +72,7 @@ Elf64_Phdr *load_elf_phdrs(Elf64_Ehdr *elf_ex, FILE *elf_file) {
     if (!elf_phdata)
         goto out;
 
-    retval = fseek(elf_file, elf_ex->e_phoff, SEEK_SET);
-    if (retval < 0) {
-		err = retval;
-		goto out;
-	}
-
-    retval = fread(elf_phdata, sizeof(Elf64_Phdr), elf_ex->e_phnum, elf_file);
+    retval = pread(fileno(elf_file), elf_phdata, size, elf_ex->e_phoff);
     if (retval < 0) {
 		err = retval;
 		goto out;
@@ -103,13 +98,12 @@ Elf64_Ehdr *load_elf_ex(FILE *elf_file) {
         goto out;
     
     // Read ELF header.
-    retval = fseek(elf_file, 0, SEEK_SET);
     if (retval < 0) {
 		err = retval;
 		goto out;
 	}
 
-    retval = fread(elf_ex, sizeof(Elf64_Ehdr), 1, elf_file);
+    retval = pread(fileno(elf_file), elf_ex, size, 0);
     if (retval < 0) {
 		err = retval;
 		goto out;
@@ -153,7 +147,7 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
     if (elf_ppnt->p_memsz > elf_ppnt->p_filesz) {
         fprintf(stderr, "mappadr: %p\n", (void*) map_addr);
 
-        addr = addr + size; // page aligned already
+        addr = addr + size; // all values page aligned already.
         size = ELF_PAGEALIGN(elf_ppnt->p_memsz - elf_ppnt->p_filesz);
 
         // Map an anonymous region.
@@ -164,6 +158,7 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
             perror("elf_map: Failed to map ELF segment");
             return -1;
         }
+
 
         zero_start = map_addr + ELF_PAGEOFFSET(elf_ppnt->p_vaddr) + elf_ppnt->p_filesz;
         zero_end = map_addr + ELF_PAGEOFFSET(elf_ppnt->p_vaddr) + elf_ppnt->p_memsz;
@@ -345,7 +340,6 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
         }
     }
     printf("cur_stack: %p, %s\n", (void*) cur_stack, *((char**) cur_stack));
-    printf("%d\n", sizeof(Elf64_auxv_t));
     ((Elf64_auxv_t*) new_auxv_start)[i] = auxv[i];
     ((Elf64_auxv_t*) new_auxv_start)[i].a_type = AT_NULL;
     printf("address: %p\n", &((Elf64_auxv_t*) new_auxv_start)[i]);
@@ -357,18 +351,11 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
 
 int load_elf_binary(struct binary_file* fp) {
     FILE *elf_file = fp->elf_file;
-	unsigned long load_bias = 0, phdr_addr = 0;
-	int first_pt_load = 1;
-	unsigned long error;
-	Elf64_Phdr *elf_ppnt, *elf_phdata, *interp_elf_phdata = NULL;
-	unsigned long elf_bss, elf_brk;
-	int bss_prot = 0;
-	int retval, i;
-	unsigned long elf_entry;
-	unsigned long e_entry;
-	unsigned long interp_load_addr = 0;
-	unsigned long start_code, end_code, start_data, end_data;
+	Elf64_Phdr *elf_ppnt, *elf_phdata = NULL;
 	Elf64_Ehdr *elf_ex = NULL;
+	unsigned long phdr_addr = 0;
+	int first_pt_load = 1;
+	int retval, i, error;
 
     // Read ELF header.
     elf_ex = load_elf_ex(elf_file);
@@ -385,20 +372,10 @@ int load_elf_binary(struct binary_file* fp) {
     }
 
     // Start line 1024 in binfmt_elf.c
-	elf_bss = 0;
-	elf_brk = 0;
-
-	start_code = ~0UL;
-	end_code = 0;
-	start_data = 0;
-	end_data = 0;
-
+    // First loaded segment shouldn't have MAP_FIXED, rest should.
     elf_ppnt = elf_phdata;
     for (i = 0; i < elf_ex->e_phnum; i++, elf_ppnt++) {
         int elf_prot, elf_flags;
-        unsigned long k, vaddr;
-		unsigned long total_size = 0;
-		unsigned long alignment;
 
         if (elf_ppnt->p_type != PT_LOAD)
             continue;
@@ -413,58 +390,22 @@ int load_elf_binary(struct binary_file* fp) {
             elf_prot |= PROT_EXEC;
         
         elf_flags = MAP_PRIVATE; // | MAP_DENYWRITE | MAP_EXECUTABLE
-        vaddr = elf_ppnt->p_vaddr;
 
         if (!first_pt_load) {
             elf_flags |= MAP_FIXED;
         }
-
-        // Print elf_ppnt
-        // fprintf(stderr, "p_type: %d\n", elf_ppnt->p_type);
-        // fprintf(stderr, "p_flags: %d\n", elf_ppnt->p_flags);
-        // fprintf(stderr, "p_offset: %lu\n", elf_ppnt->p_offset);
-        // fprintf(stderr, "p_vaddr: %lu\n", elf_ppnt->p_vaddr);
-        // fprintf(stderr, "p_paddr: %lu\n", elf_ppnt->p_paddr);
-        // fprintf(stderr, "p_filesz: %lu\n", elf_ppnt->p_filesz);
-        // fprintf(stderr, "p_memsz: %lu\n", elf_ppnt->p_memsz);
-        // fprintf(stderr, "p_align: %lu\n", elf_ppnt->p_align);
-        fseek(elf_file, 0, SEEK_SET);
-        error = elf_load(elf_file, load_bias + vaddr, elf_ppnt, elf_prot, elf_flags);
+        
+        error = elf_load(elf_file, elf_ppnt->p_vaddr, elf_ppnt, elf_prot, elf_flags);
 
         if (first_pt_load) first_pt_load = 0;
 
         // Find segment w/ Program Header Table, map to the correct address.
-	    if (elf_ppnt->p_offset <= elf_ex->e_phoff &&
-		    elf_ex->e_phoff < elf_ppnt->p_offset + elf_ppnt->p_filesz) {
+        // Need this address for stack setup later.
+	    if (elf_ppnt->p_offset <= elf_ex->e_phoff && elf_ex->e_phoff < elf_ppnt->p_offset + elf_ppnt->p_filesz) {
 			phdr_addr = elf_ex->e_phoff - elf_ppnt->p_offset +
 				    elf_ppnt->p_vaddr;
 		}
-
-        k = elf_ppnt->p_vaddr;
-		if ((elf_ppnt->p_flags & PF_X) && k < start_code)
-			start_code = k;
-		if (start_data < k)
-            start_data = k;
-        
-        // Should have some error checks here.
-	    k = elf_ppnt->p_vaddr + elf_ppnt->p_filesz;
-
-		if ((elf_ppnt->p_flags & PF_X) && end_code < k)
-			end_code = k;
-		if (end_data < k)
-			end_data = k;
-		k = elf_ppnt->p_vaddr + elf_ppnt->p_memsz;
-		if (k > elf_brk)
-			elf_brk = k;        
     }
-
-    e_entry = elf_ex->e_entry + load_bias;
-	phdr_addr += load_bias;
-	elf_brk += load_bias;
-	start_code += load_bias;
-	end_code += load_bias;
-	start_data += load_bias;
-	end_data += load_bias;
 
     free(elf_phdata);
 

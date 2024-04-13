@@ -123,8 +123,8 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
     void *map_addr_ptr = NULL;
     unsigned long map_addr;
     unsigned long zero_start, zero_end;
-    unsigned long size = elf_ppnt->p_filesz + ELF_PAGEOFFSET(elf_ppnt->p_vaddr);
-	unsigned long off = elf_ppnt->p_offset - ELF_PAGEOFFSET(elf_ppnt->p_vaddr);
+    unsigned long size = elf_ppnt->p_filesz + ELF_PAGEOFFSET(elf_ppnt->p_vaddr); // since we want to allocate from the page right before vaddr, add the page offset
+	unsigned long off = elf_ppnt->p_offset - ELF_PAGEOFFSET(elf_ppnt->p_vaddr); // since we are moving the segment to the start of the page before vaddr, subtract page offset from absolute offset.
 	addr = ELF_PAGESTART(addr);
 	size = ELF_PAGEALIGN(size);
 
@@ -133,9 +133,8 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
     
     // Print mmap args on a single line:
     fprintf(stderr, "mmap(%p, %lu, %d, %x, %d, %lu)\n", (void*) addr, size, (PROT_EXEC | PROT_READ | PROT_WRITE), elf_flags, fileno(elf_file), off);
-    fprintf(stderr, "Mapping from %p to %p\n", (void*) addr, (void*) (addr + size));
-
     map_addr_ptr = mmap((void*) addr, size, (PROT_EXEC | PROT_READ | PROT_WRITE), elf_flags, fileno(elf_file), off);
+    fprintf(stderr, "Mapping from %p to %p\n", map_addr_ptr, (void*) (((unsigned long) (map_addr_ptr)) + size));
     
     if (map_addr_ptr == MAP_FAILED) {
         perror("elf_map: Failed to map ELF segment");
@@ -145,24 +144,23 @@ unsigned long elf_map(FILE *elf_file, unsigned long addr, Elf64_Phdr *elf_ppnt, 
     map_addr = (unsigned long) map_addr_ptr;
 
     if (elf_ppnt->p_memsz > elf_ppnt->p_filesz) {
-        fprintf(stderr, "mappadr: %p\n", (void*) map_addr);
+        fprintf(stderr, "mapping bss\n");
 
         addr = addr + size; // all values page aligned already.
-        size = ELF_PAGEALIGN(elf_ppnt->p_memsz - elf_ppnt->p_filesz);
+        size = ELF_PAGEALIGN(elf_ppnt->p_vaddr + elf_ppnt->p_memsz) - ELF_PAGEALIGN(elf_ppnt->p_vaddr + elf_ppnt->p_filesz);
 
         // Map an anonymous region.
         map_addr_ptr = mmap((void*) addr, size, (PROT_EXEC | PROT_READ | PROT_WRITE), elf_flags | MAP_ANONYMOUS, -1, 0);
-        fprintf(stderr, "Mapping from %p to %p\n", (void*) addr, (void*) (addr + size));
+        fprintf(stderr, "Mapping from %p to %p with permissions %x\n", (void*) addr, (void*) (addr + size), (elf_flags | MAP_ANONYMOUS));
 
         if (map_addr_ptr == MAP_FAILED) {
             perror("elf_map: Failed to map ELF segment");
             return -1;
         }
 
-
-        zero_start = map_addr + ELF_PAGEOFFSET(elf_ppnt->p_vaddr) + elf_ppnt->p_filesz;
-        zero_end = map_addr + ELF_PAGEOFFSET(elf_ppnt->p_vaddr) + elf_ppnt->p_memsz;
-        memset((void *) zero_start, 0, zero_end - zero_start + 1);
+        zero_start = elf_ppnt->p_vaddr + elf_ppnt->p_filesz;
+        zero_end = (addr + size);
+        memset((void *) zero_start, 0, zero_end - zero_start);
     }
 
     return map_addr;
@@ -212,7 +210,6 @@ size_t calc_stack_size_till_auxv(int argc, char** argv, char** envp, Elf64_auxv_
 
     // Calculate size of auxv.
     size += (auxv_end - auxv) * sizeof(Elf64_auxv_t);
-    // size += sizeof(Elf64_auxv_t); // not needed anymore?
 
     // Include size of argc.
     size += sizeof(long);
@@ -274,7 +271,7 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
     random_region_ptr = (void*) cur_stack;
     
     // Set random region data
-
+    // TODO: do this.
 
     cur_stack &= ~0xf;
     printf("cur_stack: %p\n", (void*) cur_stack);
@@ -313,7 +310,6 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
     for (i = 0; auxv[i].a_type != AT_NULL; i++) {
         ((Elf64_auxv_t*) new_auxv_start)[i] = auxv[i];
 
-        // Convert this into a switch statement:
         switch (auxv[i].a_type) {
             case AT_PHDR:
                 ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = phdr;
@@ -349,7 +345,7 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
     return sp;
 }
 
-int load_elf_binary(struct binary_file* fp) {
+uintptr_t load_elf_binary(struct binary_file* fp) {
     FILE *elf_file = fp->elf_file;
 	Elf64_Phdr *elf_ppnt, *elf_phdata = NULL;
 	Elf64_Ehdr *elf_ex = NULL;
@@ -417,10 +413,10 @@ int load_elf_binary(struct binary_file* fp) {
         return -1;
     }
 
-
     asm volatile(
         "mov %0, %%rsp\n"
         "mov %1, %%rax\n"
+        "xorq %%rdx, %%rdx\n" // glibc segfaults if this is not zero'd out 💀.
         "jmp *%%rax\n"
         :
         : "r" (sp), "r" (elf_ex->e_entry)

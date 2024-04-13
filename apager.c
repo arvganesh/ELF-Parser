@@ -1,8 +1,6 @@
 #include "parser.h"
 #include <stdio.h>
 
-#define APAGER
-
 int main(int argc, char** argv, char** envp) {
     if (argc == 1) {
         fprintf(stderr, "main: No program specified.\n");

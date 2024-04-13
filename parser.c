@@ -269,9 +269,6 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
     // Initialize random region.
     cur_stack -= 16;
     random_region_ptr = (void*) cur_stack;
-    
-    // Set random region data
-    // TODO: do this.
 
     cur_stack &= ~0xf;
     printf("cur_stack: %p\n", (void*) cur_stack);
@@ -416,7 +413,7 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
     asm volatile(
         "mov %0, %%rsp\n"
         "mov %1, %%rax\n"
-        "xorq %%rdx, %%rdx\n" // glibc segfaults if this is not zero'd out 💀.
+        "xorq %%rdx, %%rdx\n" // glibc segfaults if this reg is not zeroed out 💀.
         "jmp *%%rax\n"
         :
         : "r" (sp), "r" (elf_ex->e_entry)

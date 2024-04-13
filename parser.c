@@ -7,6 +7,8 @@
 #include <elf.h>
 #include <errno.h>
 
+#include "parser.h"
+
 #define STACK_SIZE 8192
 #define ELF_MIN_ALIGN	4096
 #define ELF_PAGESTART(_v) ((_v) & ~(int)(ELF_MIN_ALIGN-1))
@@ -372,7 +374,7 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
 
         if (elf_ppnt->p_type != PT_LOAD)
             continue;
-            
+#ifdef APAGER
         fprintf(stderr, "LOADING SEGMENT: %d\n", elf_ppnt->p_type);
 
 	    if (elf_ppnt->p_flags & PF_R)
@@ -391,7 +393,13 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
         error = elf_load(elf_file, elf_ppnt->p_vaddr, elf_ppnt, elf_prot, elf_flags);
 
         if (first_pt_load) first_pt_load = 0;
+#elif defined(DPAGER)
+        // DPAGER code here.
 
+#elif defined(HPAGER)
+        // HPAGER code here.
+
+#endif
         // Find segment w/ Program Header Table, map to the correct address.
         // Need this address for stack setup later.
 	    if (elf_ppnt->p_offset <= elf_ex->e_phoff && elf_ex->e_phoff < elf_ppnt->p_offset + elf_ppnt->p_filesz) {
@@ -439,25 +447,4 @@ struct binary_file *parse_file(int argc, char** argv, char** envp) {
     }
 
     return fp;
-}
-
-int main(int argc, char** argv, char** envp) {
-    if (argc == 1) {
-        fprintf(stderr, "main: No program specified.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    struct binary_file* fp = NULL;
-    fp = parse_file(argc, argv, envp);
-    if (fp == NULL) {
-        fprintf(stderr, "main: Failed to parse file.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    if (load_elf_binary(fp) != 0) {
-        fprintf(stderr, "main: Loading ELF binary failed.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    return 0;
 }

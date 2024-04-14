@@ -9,19 +9,6 @@
 
 #include "parser.h"
 
-#define STACK_SIZE 8192
-#define ELF_MIN_ALIGN	4096
-#define ELF_PAGESTART(_v) ((_v) & ~(int)(ELF_MIN_ALIGN-1))
-#define ELF_PAGEALIGN(_v) (((_v) + ELF_MIN_ALIGN - 1) & ~(ELF_MIN_ALIGN - 1))
-#define ELF_PAGEOFFSET(_v) ((_v) & (ELF_MIN_ALIGN - 1))
-
-struct binary_file {
-    int argc;
-    char** argv;
-    char** envp;
-    FILE* elf_file;
-};
-
 /**
  * Routine for checking stack made for child program.
  * top_of_stack: stack pointer that will given to child program as %rsp
@@ -346,25 +333,12 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
 
 uintptr_t load_elf_binary(struct binary_file* fp) {
     FILE *elf_file = fp->elf_file;
-	Elf64_Phdr *elf_ppnt, *elf_phdata = NULL;
-	Elf64_Ehdr *elf_ex = NULL;
+	Elf64_Ehdr *elf_ex = fp->elf_ex;
+    Elf64_Phdr *elf_phdata = fp->elf_phdata;
+	Elf64_Phdr *elf_ppnt = NULL;
 	unsigned long phdr_addr = 0;
 	int first_pt_load = 1;
 	int retval, i, error;
-
-    // Read ELF header.
-    elf_ex = load_elf_ex(elf_file);
-    if (!elf_ex) {
-        fprintf(stderr, "load_elf_binary: Failed to read ELF header.\n");
-        return -1;
-    }
-
-    // Read program headers.
-    elf_phdata = load_elf_phdrs(elf_ex, elf_file);
-    if (!elf_phdata) {
-        fprintf(stderr, "load_elf_binary: Failed to read ELF program headers.\n");
-        return -1;
-    }
 
     // Start line 1024 in binfmt_elf.c
     // First loaded segment shouldn't have MAP_FIXED, rest should.
@@ -413,11 +387,6 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
     printf("\n\nSETTING UP STACK:\n\n");
     char* sp = setup_stack(fp, phdr_addr, elf_ex->e_entry, elf_ex->e_phnum, elf_ex->e_phentsize, elf_ex->e_entry); // stack stuff.
 
-    if(fclose(elf_file)) {
-        fprintf(stderr, "elf_load_binary: failed to close elf executable.\n");
-        return -1;
-    }
-
     asm volatile(
         "mov %0, %%rsp\n"
         "mov %1, %%rax\n"
@@ -440,9 +409,25 @@ struct binary_file *parse_file(int argc, char** argv, char** envp) {
     fp->argc = --argc;
     fp->argv = &argv[1];
     fp->envp = envp;
+    
+    // Open elf_file.
     fp->elf_file = fopen(argv[1], "r+");
     if (fp->elf_file == NULL) {
         fprintf(stderr, "parse_file: Failed to open executable file.\n");
+        return NULL;
+    }
+
+    // Read ELF header.
+    fp->elf_ex = load_elf_ex(fp->elf_file);
+    if (!fp->elf_ex) {
+        fprintf(stderr, "parse_file: Failed to read ELF header.\n");
+        return NULL;
+    }
+
+    // Read program headers.
+    fp->elf_phdata = load_elf_phdrs(fp->elf_ex, fp->elf_file);
+    if (!fp->elf_phdata) {
+        fprintf(stderr, "parse_file: Failed to read ELF program headers.\n");
         return NULL;
     }
 

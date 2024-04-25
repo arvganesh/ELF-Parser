@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "sigevent-consts.h": "c",
+        "parser.h": "c",
+        "stdlib.h": "c"
+    }
+}

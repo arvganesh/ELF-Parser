@@ -18,6 +18,8 @@ Elf64_Phdr *find_fault_hdr(void* fault_addr_ptr) {
     int i;
     uintptr_t page_start, page_end;
 
+    fprintf(stderr, "calling fault hdr\n");
+
     // Linear search for segment containing faulting address.
     for (i = 0; i < elf_ex->e_phnum; i++, elf_it++) {
         if (elf_it->p_type != PT_LOAD)
@@ -26,7 +28,7 @@ Elf64_Phdr *find_fault_hdr(void* fault_addr_ptr) {
         page_start = ELF_PAGESTART(elf_it->p_vaddr);
         page_end = ELF_PAGEALIGN(elf_it->p_vaddr + elf_it->p_memsz);
 
-        // fprintf(stderr, "page_start: %p, page_end: %p, fault_addr: %p\n", (void*) page_start, (void*) page_end, (void*) fault_addr);
+        fprintf(stderr, "page_start: %p, page_end: %p, fault_addr: %p\n", (void*) page_start, (void*) page_end, (void*) fault_addr);
 
         if (page_start <= fault_addr && fault_addr < page_end) {
             break;
@@ -104,6 +106,7 @@ int main(int argc, char** argv, char** envp) {
     }
     
     install_segfault_handler();
+    // find_fault_hdr((void*) 0x10002a40);
 
     if (load_elf_binary(fp) != 0) {
         fprintf(stderr, "main: Loading ELF binary failed.\n");

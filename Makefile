@@ -59,8 +59,8 @@ page_alloc_static: $(TEST_FILE_PATH)page_alloc.c
 ## CLEANING
 
 clean:
-	rm *.o
-	rm *_static
+	rm $(TEST_FILE_PATH)*.o
+	rm $(TEST_FILE_PATH)*_static
 	rm *pager
 
 

@@ -208,7 +208,7 @@ size_t calc_stack_size_till_auxv(int argc, char** argv, char** envp, Elf64_auxv_
 
 void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_entry, unsigned long e_phnum, unsigned long e_phentsize, unsigned long entry) {
     void* stack_top = malloc(STACK_SIZE);
-    void* stack_bottom = (void*) ((unsigned long )stack_top + STACK_SIZE);
+    void* stack_bottom = (void*) (((unsigned long)stack_top) + STACK_SIZE);
     void* sp, *random_region_ptr, *platform_ptr;
     uintptr_t cur_stack = (uintptr_t) stack_bottom;
     int i;
@@ -298,7 +298,7 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
 
         switch (auxv[i].a_type) {
             case AT_PHDR:
-                ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = phdr;
+                ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = 0;
                 break;
             case AT_ENTRY:
                 ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = e_entry;
@@ -309,7 +309,7 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
                 ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = e_phnum;
                 break;
             case AT_PHENT:
-                ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = e_phentsize;
+                ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = sizeof(Elf64_Phdr);
                 break;
             case AT_RANDOM:
                 ((Elf64_auxv_t*) new_auxv_start)[i].a_un.a_val = (uintptr_t) random_region_ptr;
@@ -331,6 +331,17 @@ void* setup_stack(struct binary_file* fp, unsigned long phdr, unsigned long e_en
     return sp;
 }
 
+int padzero(unsigned long elf_bss) {
+    unsigned long nbyte;
+
+    nbyte = ELF_PAGEOFFSET(elf_bss);
+    if (nbyte) {
+        nbyte = ELF_MIN_ALIGN - nbyte;
+        memset((void*)elf_bss, 0, nbyte);
+    }
+    return 0;
+}
+
 uintptr_t load_elf_binary(struct binary_file* fp) {
     FILE *elf_file = fp->elf_file;
 	Elf64_Ehdr *elf_ex = fp->elf_ex;
@@ -340,6 +351,9 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
 	int first_pt_load = 1;
 	int retval, i, error;
 
+    unsigned long elf_bss = 0, elf_brk = 0;
+    int bss_prot = 0;
+
     // Start line 1024 in binfmt_elf.c
     // First loaded segment shouldn't have MAP_FIXED, rest should.
     elf_ppnt = elf_phdata;
@@ -348,8 +362,6 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
 
         if (elf_ppnt->p_type != PT_LOAD)
             continue;
-#ifdef APAGER
-        fprintf(stderr, "LOADING SEGMENT: %d\n", elf_ppnt->p_type);
 
 	    if (elf_ppnt->p_flags & PF_R)
 			elf_prot |= PROT_READ;
@@ -363,17 +375,37 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
         if (!first_pt_load) {
             elf_flags |= MAP_FIXED;
         }
-        
+#ifdef APAGER
         error = elf_load(elf_file, elf_ppnt->p_vaddr, elf_ppnt, elf_prot, elf_flags);
-
-        if (first_pt_load) first_pt_load = 0;
 #elif defined(DPAGER)
         // DPAGER code here.
+        printf("loading page\n");
+        int fd = fileno(elf_file);
+        unsigned long off = elf_ppnt->p_offset - ELF_PAGEOFFSET(elf_ppnt->p_vaddr);
+        unsigned long addr = ELF_PAGESTART(elf_ppnt->p_vaddr);
+        unsigned long size = 4096;
+        off += addr - ELF_PAGESTART(elf_ppnt->p_vaddr);
+        if (mmap((void*) addr, size, elf_prot,  MAP_PRIVATE | MAP_FIXED | MAP_EXECUTABLE, fd, off) == MAP_FAILED) {
+            printf("load_elf_binary: mmap failed: %s\n", strerror(errno));
+            exit(-1);
+        }
 
+        unsigned long k;
+        k = elf_ppnt->p_vaddr + elf_ppnt->p_filesz;
+        if (k > elf_bss) {
+            elf_bss = k;
+        }
+        k = elf_ppnt->p_vaddr + elf_ppnt->p_memsz;
+        if (k > elf_brk) {
+            bss_prot = elf_prot;
+            elf_brk = k;
+        }
 #elif defined(HPAGER)
         // HPAGER code here.
-
+        
 #endif
+
+        if (first_pt_load) first_pt_load = 0;
         // Find segment w/ Program Header Table, map to the correct address.
         // Need this address for stack setup later.
 	    if (elf_ppnt->p_offset <= elf_ex->e_phoff && elf_ex->e_phoff < elf_ppnt->p_offset + elf_ppnt->p_filesz) {
@@ -382,9 +414,7 @@ uintptr_t load_elf_binary(struct binary_file* fp) {
 		}
     }
 
-    free(elf_phdata);
-
-    printf("\n\nSETTING UP STACK:\n\n");
+    // printf("\nSETTING UP STACK:\n\n");
     char* sp = setup_stack(fp, phdr_addr, elf_ex->e_entry, elf_ex->e_phnum, elf_ex->e_phentsize, elf_ex->e_entry); // stack stuff.
 
     asm volatile(
@@ -430,6 +460,8 @@ struct binary_file *parse_file(int argc, char** argv, char** envp) {
         fprintf(stderr, "parse_file: Failed to read ELF program headers.\n");
         return NULL;
     }
+
+    printf("file: %p, ex: %p, ph: %p\n", fp->elf_file, fp->elf_ex, fp->elf_phdata);
 
     return fp;
 }

@@ -1,0 +1,4 @@
+add-symbol-file helloworld_static 0x10000000
+r helloworld_static
+watch *(struct binary_file*) fp
+handle SIGSEGV print nostop

@@ -22,3 +22,5 @@ struct binary_file {
 uintptr_t load_elf_binary(struct binary_file* fp);
 
 struct binary_file *parse_file(int argc, char** argv, char** envp);
+
+int padzero(unsigned long elf_bss);
